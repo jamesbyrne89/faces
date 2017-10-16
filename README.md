@@ -1,7 +1,5 @@
 
-# My Project Template
+#Faces App
 <br>
-A basic template folder structure for starting new web projects.
-<br>
-<br>
-Includes boilerplate HTML and CSS files, as well as Gulp tasks for automation.
+To help you get to know who's who at your workplace.
+
