@@ -1,9 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .app-container {
     width: 100%;
 }
 
 .header {
-    width: 100%;
+    width: 200px;
     border-bottom: solid 2px black;
     height: 120px;
+    background: coral;
+    height: 100%;
+    min-height: 100vh;
+    padding: 1em;
+}
+
+nav {}
+
+li {
+    list-style: none;
+    padding: 0.75em 0;
 }

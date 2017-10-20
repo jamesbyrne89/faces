@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            profiles: []
-        }
-    }
+const Profile = () => {
     render() {
         return ( < div className = "app-container" >
             <
