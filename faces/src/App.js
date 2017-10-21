@@ -5,10 +5,16 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            profiles: []
+            profiles: [{
+                name: "James Byrne",
+                title: "Junior Web Developer",
+                email: "james.byrne@warehouse.co.uk",
+                team: "Digital"
+            }]
         }
     }
     render() {
+        const { profiles } = this.state;
         return ( < div className = "app-container" >
             <
             header className = "header" >
@@ -27,9 +33,8 @@ class App extends Component {
             /nav> < /
             header >
             <
-            main className = "app-content" >
-            <
-            /main> < /
+            main className = "app-content" > < header className = "controls-bar" > < /header > < /
+            main > < /
             div >
         );
     }

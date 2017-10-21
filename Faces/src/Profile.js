@@ -23,6 +23,9 @@ const Profile = () => {
             <
             main className = "app-content" >
             <
+            header className = "controls-bar" >
+            <
+            /header> <
             /main> < /
             div >
         );
