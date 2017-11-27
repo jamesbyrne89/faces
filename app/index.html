@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <!-- build:css assets/styles/styles.css -->
+    <link rel="stylesheet" href="/temp/assets/styles/styles.css">
+    <!-- endBuild -->
+    <link href="/assets/images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="/assets/images/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="vue-app" class="app-container">
+        <header class="main-header">
+            <div class="logo">Faces</div>
+            <nav>
+                <ul>
+                    <li>Teams</li>
+                    <li>Seating Plan</li>
+                    <li></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="content-area">
+            <header class="options-bar">
+                <input type="search">
+            </header>
+            <section>
+                <div class="profile" v-for="profile in profiles">
+                    <picture>
+                        <img v-bind:src="imageFolder+profile.photo">
+                    </picture>
+                    <div class="profile-info-wrap">
+                        <span class="profile-info">{{ profile.name }}</span>
+                        <span class="profile-info">{{ profile.title }}</span>
+                        <span class="profile-info">{{ profile.email }}</span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+<!-- build:js assets/scripts/app.js -->
+<script src="assets/scripts/app.js"></script>
+
+<!-- endBuild -->
