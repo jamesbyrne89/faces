@@ -7,7 +7,7 @@
 body {
     background: #ebedf6;
     color: #81859a;
-    font-family: 'nunito', helvetica, arial, sans-serif;
+    font-family: 'varela round', helvetica, arial, sans-serif;
 }
 
 .app-container {
@@ -19,10 +19,10 @@ body {
 .header {
     background: #fff;
     color: $colourFive;
-    width: 200px;
+    width: 300px;
     height: 100%;
     min-height: 100vh;
-    padding: 1rem;
+    padding: 2rem 2.5rem;
     nav {
         padding: 1rem;
         ul {
@@ -45,24 +45,73 @@ body {
     margin-top: 0.5rem;
 }
 
-.header button {
-    background: #5a52ff;
-    padding: 0.5rem 1rem;
-    color: #fff;
+
+/* Buttons */
+
+.btn {
+    background: transparent;
     border: 0;
-    border-radius: 4px;
+    margin-top: 1.25rem;
     cursor: pointer;
+    font-weight: 700;
 }
 
-button i {
-    margin: 0 5px;
+.btn-option {
+    background: #001386;
+    padding: 0.675rem 1rem 0.5rem;
+    color: #fff;
+    border-radius: 4px;
+    display: block;
+    min-width: 135px;
+    text-align: left;
+    transition: all .15s ease;
+}
+
+.btn-option:hover {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    transform: translateY(-1px);
+    background: #4841cc;
+}
+
+.btn-cancel {
+    background: #AD2E49;
+    display: block;
+    color: #fff;
+    padding: 0.675rem 1rem 0.5rem;
+    border-radius: 4px;
+    min-width: 135px;
+    text-align: left;
+}
+
+.btn-navigation {
+    color: #4DCDFD;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.btn.btn-navigation i {
+    margin: 0 0 0 10px;
+}
+
+.btn i {
+    float: right;
 }
 
 .logo {
     font-size: 2rem;
     font-weight: bold;
     padding: 1rem;
-    color: #5a52ff;
+    color: #001386;
+}
+
+.add-photo {
+    padding: 2rem;
+}
+
+.add-photo .btn-option {
+    width: 360px;
+    font-size: 1.25rem;
+    padding: 1.125rem 2rem 1rem;
 }
 
 .app-content {
@@ -110,34 +159,81 @@ button i {
     display: block;
 }
 
+
+/* Modal */
+
+.modal-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .modal {
     background: white;
-    border-radius: 12px;
-    position: relative;
-    padding: 2.5rem 4rem 1rem 1rem;
+    border-radius: 5px;
+    position: absolute;
+    padding: 2.5rem 2.5rem 1rem 1rem;
+    display: block;
+    z-index: 100;
+}
+
+.modal-title {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    color: #001386;
 }
 
 .modal-close-btn {
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+    margin-top: 0;
     cursor: pointer;
     transition: 0.15s ease-out;
     font-size: 1.5rem;
+    background: none;
 }
 
 .modal-close-btn:hover {
     transform: scale(1.2);
 }
 
+.modal-close-btn:active {
+    border: 0;
+    outline: 0;
+}
+
+.modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #212431;
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
 .add-photo {
+    padding: 0 2rem 2rem 2rem;
+}
+
+.take-photo {
+    min-width: 840px;
     position: relative;
     display: flex;
 }
 
-.add-photo__controls {
-    border: solid 2px mediumspringgreen;
-    flex: 1 0 20%;
+.take-photo__controls {
+    flex: 1 0 200px;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 canvas {
@@ -159,7 +255,6 @@ canvas {
 }
 
 .player {
-    border: solid 2px blue;
     position: absolute;
     top: 0;
     left: 0;

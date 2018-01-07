@@ -13,47 +13,44 @@ class App extends Component {
                 team: "Digital"
             }],
             modal: {
-                open: false
+                open: false,
+                content: null
             }
         }
     }
 
-    launchModal() {
+    modalHandler(openState, content) {
         this.setState({
             modal: {
-                open: !this.state.modal.open
+                open: openState,
+                content: content
             }
-        })
+        });
     }
 
-    showModal() {
-        return this.state.modal.open ? < Modal className = "modal" / > : '';
-    }
 
     render() {
         const { profiles } = this.state;
-        return ( < div className = "app-container" >
-            <
-            header className = "header" >
-            <
-            h1 className = "App-title" > Faces App < /h1> <
-            nav >
-            <
-            ul >
-            <
-            li > View seating plan < /li> <
-            li > Teams < /li> <
-            li > All Team Members < /li> <
-            li > < /li> <
-            li > < /li> < /
-            ul > <
-            /nav> <button onClick={this.launchModal.bind(this)}>Add photo <
-            i className = "fa fa-camera" > < /i></button > < /
-            header >
-            <
-            main className = "app-content" > < header className = "controls-bar" > < /header > {this.showModal()} < /
-            main > < /
-            div >
+        const modalHandler = this.modalHandler.bind(this);
+        return (
+        <div className="app-container">
+            <header className="header">
+                <h1 className="App-title">Faces App</h1>
+                    <nav>
+                        <ul>
+                            <li>View seating plan</li>
+                            <li>Teams</li>
+                            <li>All Team Members</li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </nav>
+                    <button className="btn btn-option" onClick={() => modalHandler(true, 'new_photo')}>Add photo <i className="fa fa-camera"> </i></button>
+                </header>
+            <main className="app-content"> <header className="controls-bar"></header>
+                <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler}/>
+            </main>
+        </div>
         );
     }
 }
