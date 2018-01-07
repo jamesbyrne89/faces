@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
+import Modal from './components/Modal';
 
 class App extends Component {
     constructor(props) {
@@ -10,9 +11,25 @@ class App extends Component {
                 title: "Junior Web Developer",
                 email: "james.byrne@warehouse.co.uk",
                 team: "Digital"
-            }]
+            }],
+            modal: {
+                open: false
+            }
         }
     }
+
+    launchModal() {
+        this.setState({
+            modal: {
+                open: !this.state.modal.open
+            }
+        })
+    }
+
+    showModal() {
+        return this.state.modal.open ? < Modal className = "modal" / > : '';
+    }
+
     render() {
         const { profiles } = this.state;
         return ( < div className = "app-container" >
@@ -30,10 +47,11 @@ class App extends Component {
             li > < /li> <
             li > < /li> < /
             ul > <
-            /nav> < /
+            /nav> <button onClick={this.launchModal.bind(this)}>Add photo <
+            i className = "fa fa-camera" > < /i></button > < /
             header >
             <
-            main className = "app-content" > < header className = "controls-bar" > < /header > < /
+            main className = "app-content" > < header className = "controls-bar" > < /header > {this.showModal()} < /
             main > < /
             div >
         );

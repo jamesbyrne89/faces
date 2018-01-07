@@ -1,27 +1,28 @@
-@import 'inc/_variables';
-@import 'inc/_typography';
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-#vue-app {
-    max-width: 100vw;
+body {
+    background: #ebedf6;
+    color: #81859a;
+    font-family: 'nunito', helvetica, arial, sans-serif;
 }
 
 .app-container {
     display: flex;
-    font-family: 'Inter UI Medium', helvetica;
     letter-spacing: -0.025em;
+    min-height: 100vh;
 }
 
-.main-header {
-    background: $colourOne;
+.header {
+    background: #fff;
     color: $colourFive;
     width: 200px;
     height: 100%;
     min-height: 100vh;
+    padding: 1rem;
     nav {
         padding: 1rem;
         ul {
@@ -30,22 +31,46 @@
                 margin-top: 1rem;
                 text-transform: uppercase;
                 font-weight: bold;
+                list-style: none;
             }
         }
     }
+}
+
+.header ul {
+    list-style: none;
+}
+
+.header ul li {
+    margin-top: 0.5rem;
+}
+
+.header button {
+    background: #5a52ff;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button i {
+    margin: 0 5px;
 }
 
 .logo {
     font-size: 2rem;
     font-weight: bold;
     padding: 1rem;
+    color: #5a52ff;
 }
 
-.content-area {
-    background: $colourSix;
+.app-content {
     padding: 1em;
     text-align: center;
-    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 60vw;
     display: flex;
     flex-wrap: wrap;
     section {
@@ -83,4 +108,61 @@
 .profile-info {
     font-family: 'Inter-UI-Black';
     display: block;
+}
+
+.modal {
+    background: white;
+    border-radius: 12px;
+    position: relative;
+    padding: 2.5rem 4rem 1rem 1rem;
+}
+
+.modal-close-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+    cursor: pointer;
+    transition: 0.15s ease-out;
+    font-size: 1.5rem;
+}
+
+.modal-close-btn:hover {
+    transform: scale(1.2);
+}
+
+.add-photo {
+    position: relative;
+    display: flex;
+}
+
+.add-photo__controls {
+    border: solid 2px mediumspringgreen;
+    flex: 1 0 20%;
+}
+
+canvas {
+    background: #ebedf6;
+    position: relative;
+}
+
+.canvas-wrap {
+    position: relative;
+}
+
+.canvas-wrap .error {
+    color: #212431;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.player {
+    border: solid 2px blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
