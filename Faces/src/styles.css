@@ -45,6 +45,42 @@ body {
     margin-top: 0.5rem;
 }
 
+.controls-bar {
+    position: absolute;
+    top: 2px;
+    right: 20px;
+    color: #001386;
+}
+
+.controls-bar ul li {
+    margin: 0 25px;
+    font-size: 1rem;
+}
+
+.controls-bar ul li i {
+    margin-right: 5px;
+    float: none;
+}
+
+.controls-bar ul li .btn {
+    color: #001386;
+    font-size: 1rem;
+}
+
+.controls-bar ul li .location {
+    position: relative;
+    padding-right: 20px;
+}
+
+.controls-bar ul li .location:hover:after {
+    font-family: FontAwesome;
+    content: '\f107';
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 2px;
+}
+
 
 /* Buttons */
 
@@ -131,6 +167,11 @@ body {
     }
 }
 
+.app-content ul {
+    display: flex;
+    list-style: none;
+}
+
 .profile {
     display: inline-block;
     text-align: left;
@@ -159,6 +200,42 @@ body {
     display: block;
 }
 
+.profile-card {
+    background: #fff;
+    border-radius: 3px;
+    padding: 1.5rem;
+    text-align: left;
+    margin: 25px;
+}
+
+.profile-card__name,
+.profile-card__title,
+.profile-card__email,
+.profile-card__team {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.profile-card__photo {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    display: block;
+}
+
+.change-photo-icon {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+}
+
+.profile-card__photo:hover .change-photo-icon {
+    display: block;
+    cursor: pointer;
+}
+
 
 /* Modal */
 
@@ -166,6 +243,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .modal {

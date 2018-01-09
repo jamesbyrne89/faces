@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewPhoto from '../Views/NewPhoto';
 import TakePhoto from '../Views/TakePhoto';
+import UploadPhoto from '../Views/UploadPhoto';
 
 
 
@@ -17,6 +18,9 @@ class Modal extends Component {
         }
         else if (this.props.content === 'take_photo') {
             return <TakePhoto handler={ this.props.handler } />
+        }
+        else if (this.props.content === 'upload_photo') {
+            return <UploadPhoto handler={ this.props.handler } />
         }
         else {
             return null
