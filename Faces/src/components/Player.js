@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TakePhoto from '../Views/TakePhoto';
+import TakePhoto from '../views/TakePhoto';
 
 
 

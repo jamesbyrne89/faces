@@ -66,6 +66,7 @@ class App extends Component {
             <main className="app-content">
                 <header className="controls-bar">
                     <ul>
+                        <li>Warehouse Fashions</li>
                         <li><button className="btn location"><i className="fa fa-map-marker"></i> London</button></li>
                         <li><button className="btn">Sign Out</button></li>
                     </ul>

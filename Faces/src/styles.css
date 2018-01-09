@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Proxima Nova Rg';
+    src: url('fonts/ProximaNova-Regular.woff2') format('woff2'), url('fonts/ProximaNova-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +14,7 @@
 body {
     background: #ebedf6;
     color: #81859a;
-    font-family: 'varela round', helvetica, arial, sans-serif;
+    font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
 }
 
 .app-container {
@@ -53,8 +60,9 @@ body {
 }
 
 .controls-bar ul li {
-    margin: 0 25px;
+    margin: 1.5rem 25px 0;
     font-size: 1rem;
+    font-weight: bold;
 }
 
 .controls-bar ul li i {
@@ -65,6 +73,8 @@ body {
 .controls-bar ul li .btn {
     color: #001386;
     font-size: 1rem;
+    font-weight: bold;
+    margin-top: 0;
 }
 
 .controls-bar ul li .location {
@@ -89,7 +99,8 @@ body {
     border: 0;
     margin-top: 1.25rem;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: bold;
+    font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
 }
 
 .btn-option {
@@ -196,7 +207,6 @@ body {
 }
 
 .profile-info {
-    font-family: 'Inter-UI-Black';
     display: block;
 }
 
