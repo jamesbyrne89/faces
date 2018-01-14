@@ -1,32 +1,17 @@
 import React, { Component } from 'react';
-import './styles.css';
+import ProfileCard from '../components/ProfileCard';
+import '../styles.css';
 
-const Profile = () => {
-    render() {
-        return ( < div className = "app-container" >
-            <
-            header className = "header" >
-            <
-            h1 className = "App-title" > Faces App < /h1> <
-            nav >
-            <
-            ul >
-            <
-            li > View seating plan < /li> <
-            li > Teams < /li> <
-            li > All Team Members < /li> <
-            li > < /li> <
-            li > < /li> < /
-            ul > <
-            /nav> < /
-            header >
-            <
-            main className = "app-content" >
-            <
-            /main> < /
-            div >
+const Team = props => {
+    console.log(props)
+        return (
+            <div>  
+                <h2 className="page-title">Digital</h2> 
+                <ul>
+                    {props.profiles.map((item, i) => <li key={i}><ProfileCard modalHandler={props.modalHandler} profile={item} /></li>)}
+                </ul>
+            </div>
         );
-    }
 }
 
-export default App;
+export default Team;
