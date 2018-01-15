@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import NewPhoto from '../views/NewPhoto';
 
-const locationBtn = document.querySelector('.location')
-console.log(locationBtn)
-
 
 class LocationsDropdown extends Component {
     constructor(props) {
@@ -19,13 +16,30 @@ class LocationsDropdown extends Component {
         });
     }
 
+    getLocationsList() {
+        const { locations } = this.props;
+        return locations.list.filter(loc => loc !== locations.current  )
+    }
+
+    renderDropdown() {
+        if (this.state.visible) {
+        return (
+                <div className="menu-dropdown">
+                    <ul>{this.getLocationsList().map(loc=><li key={loc}><button className="btn">{loc}</button></li>)}</ul>
+                </div>
+        ) 
+     }
+     else { return }
+    }
+
     render() {
         let isVisible = this.state.visible;
-       let classes = isVisible ? "menu-dropdown menu-dropdown--visible" : "hidden"
+       const locationList = this.getLocationsList.bind(this)
     return (
-    <div className={classes}>
-        <ul>{this.props.locations.map(loc=><li key={loc}>{loc}</li>)}</ul>
-    </div>
+        <li>
+            <button className="btn location" onClick={this.showHide.bind(this)}><i className="fa fa-map-marker"></i> London</button>
+            {this.renderDropdown()}
+        </li>
     );
     }
 }

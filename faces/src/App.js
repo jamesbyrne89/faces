@@ -83,13 +83,17 @@ class App extends Component {
                 "Retail",
                 "Buying"
             ],
-            locations: [
-                "London",
-                "Stanton Harcourt",
-                "International",
-                "International 2",
-                "International 3"
-            ],
+            locations: {
+                list: [
+                    "London",
+                    "Stanton Harcourt",
+                    "International",
+                    "International 2",
+                    "International 3"
+                ],
+                current: "London"
+            },
+            currentLocation: "London",
             modal: {
                 open: false,
                 content: null
@@ -98,8 +102,8 @@ class App extends Component {
     }
 
     filterTeams(name) {
-       const { profiles } = this.state;
-       let teamName = name.toLowerCase();
+        const { profiles } = this.state;
+        let teamName = name.toLowerCase();
         return profiles.filter(profile => (profile.team).toLowerCase() === teamName);
     }
 
@@ -113,7 +117,7 @@ class App extends Component {
     }
 
 
-    
+
 
 
     render() {
@@ -124,33 +128,30 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-            <div className={"app-container" + (modal.open ? ' modal-opened' : '')} >
-                <Header />
-                <main className="app-content">
-                    <header className="controls-bar">
-                    
-                        <ul>
-                            <li>Warehouse Fashions</li>
-                            <li>
-                                <button className="btn location" ><i className="fa fa-map-marker"></i> London</button>
-                            </li>
-                            <LocationsDropdown locations={locations}/>
-                            <li><button className="btn">Sign Out</button></li>
-                        </ul>
-                    </header>
-                    
+                <div className={"app-container" + (modal.open ? ' modal-opened' : '')} >
+                    <Header />
+                    <main className="app-content">
+                        <header className="controls-bar">
+
+                            <ul>
+                                <li>Warehouse Fashions</li>
+                                <LocationsDropdown locations={locations} />
+                                <li><button className="btn">Sign Out</button></li>
+                            </ul>
+                        </header>
+
                         <Switch>
                             <Route exact path="/"
-                            render={(routeProps)=> <Dashboard {...routeProps} profiles={profiles}  modalHandler={this.modalHandler} />} />
+                                render={(routeProps) => <Dashboard {...routeProps} profiles={profiles} modalHandler={this.modalHandler} />} />
                             <Route exact path="/teamname"
-                            render={(routeProps)=> <Team {...routeProps} filterTeams={filterTeams}  profiles={profiles} modalHandler={this.modalHandler} />} />
+                                render={(routeProps) => <Team {...routeProps} filterTeams={filterTeams} profiles={profiles} modalHandler={this.modalHandler} />} />
                             <Route exact path="/teams"
-                            render={(routeProps)=> <Teams {...routeProps} profiles={profiles} />} />
+                                render={(routeProps) => <Teams {...routeProps} profiles={profiles} />} />
                         </Switch>
-                    
-                    <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />
-                </main>
-            </div>
+
+                        <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />
+                    </main>
+                </div>
             </BrowserRouter>
         );
     }
