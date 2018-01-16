@@ -7,7 +7,7 @@ import '../styles.css';
 const Header = () => {
     return (
         <header className="header">
-            <h1 className="App-title"><Link to='/'>Faces App</Link></h1>
+            <h1 className="app-title"><Link to='/'>faces</Link></h1>
             <nav>
                 <ul>
                     <li>View seating plan</li>

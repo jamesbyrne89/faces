@@ -146,7 +146,7 @@ class App extends Component {
                             <Route exact path="/teamname"
                                 render={(routeProps) => <Team {...routeProps} filterTeams={filterTeams} profiles={profiles} modalHandler={this.modalHandler} />} />
                             <Route exact path="/teams"
-                                render={(routeProps) => <Teams {...routeProps} profiles={profiles} />} />
+                                render={(routeProps) => <Teams {...routeProps} profiles={profiles} teams={teams} />} />
                         </Switch>
 
                         <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />

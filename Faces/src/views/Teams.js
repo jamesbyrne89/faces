@@ -4,11 +4,15 @@ import '../styles.css';
 
 
 const Teams = props => {
+    console.log(props)
         return (
             <div>
-                <h2 className="page-title">Teams</h2>
+                <header>
+                    <h2 className="page-title">Teams</h2>
+                    <button className="btn btn-option">New</button>
+                </header>
             <ul className="app-content">
-                {props.profiles.map((item, i) => <li key={i}><TeamCard modalHandler={props.modalHandler} profile={item} /></li>)}
+                {props.teams.map((team, i) => <li key={i}><TeamCard modalHandler={props.modalHandler} team={team} /></li>)}
             </ul>
             </div>
         );

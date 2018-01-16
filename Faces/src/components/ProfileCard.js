@@ -4,6 +4,7 @@ import NewPhoto from '../views/NewPhoto';
 
 
 const ProfileCard = (props) => {
+    console.log(props)
     return ( <div className = "profile-card" >
         <picture className = "profile-card__photo" >
         <img className = "profile-card__img"

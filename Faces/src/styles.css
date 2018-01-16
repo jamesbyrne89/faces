@@ -50,6 +50,11 @@ body {
     }
 }
 
+.app-title a {
+    text-decoration: none;
+    color: #001386;
+}
+
 .header ul {
     list-style: none;
     margin-top: 2rem;
@@ -155,6 +160,7 @@ body {
     font-weight: bold;
     padding: 1rem;
     color: #001386;
+    text-decoration: none;
 }
 
 .add-photo {
@@ -168,10 +174,9 @@ body {
 }
 
 .app-content {
-    padding: 1em;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex: 1 0 60vw;
     display: flex;
     flex-wrap: wrap;
@@ -183,6 +188,13 @@ body {
         min-width: 80vw;
         margin: auto;
     }
+}
+
+.app-content header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 25px;
 }
 
 .page-title {
@@ -226,10 +238,11 @@ body {
 
 .profile-card {
     background: #fff;
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 1.5rem;
     text-align: left;
     margin: 25px;
+    min-width: 15vw;
 }
 
 .profile-card__name {
