@@ -124,7 +124,9 @@ filterTeams(name) {
 
 getAllEmployees() {
     let { teams } = this.state;
-  return 
+  return teams.reduce((teams, team) => {
+      return teams.concat(...team.profiles)
+    }, []) 
 }
 
 modalHandler(openState, content) {
@@ -163,7 +165,7 @@ render() {
                     <Switch>
                         <Route exact path="/"
                             render={(routeProps) => <Dashboard {...routeProps} profiles={allEmployees} modalHandler={this.modalHandler} />} />
-                        <Route exact path="/teamname"
+                        <Route exact path="/teams/:name"
                             render={(routeProps) => <Team {...routeProps} filterTeams={filterTeams} profiles={allEmployees} modalHandler={this.modalHandler} />} />
                         <Route exact path="/teams"
                             render={(routeProps) => <Teams {...routeProps} profiles={allEmployees} teams={teams} />} />

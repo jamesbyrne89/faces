@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-
+import { BrowserRouter, Link } from 'react-router-dom';
 
 
 const TeamCard = (props) => {
-    console.log(props)
+    const { team, members } = props
     return (  
-    <div className="profile-card">
-        <span className="profile-card__name">{ props.team }</span>
+    <div className="team-card">
+        <span className="team-card__name">{ team }</span>
+        <span className="team-card__size-num">{ members.length }<p>{(members.length === 1 ? 'member': 'members')}</p></span>
+        <Link to={{pathname: "/teams/" + team.toLowerCase(),
+    name: team}} team={props.team}><button className="btn">View ></button></Link>
     </div>
     );
 }
