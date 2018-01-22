@@ -4,7 +4,8 @@ import Dashboard from '../views/Dashboard';
 import Teams from '../views/Teams';
 import '../styles.css';
 
-const Header = () => {
+const Header = (props) => {
+    const { teams } = props;
     return (
         <header className="header">
             <h1 className="app-title"><Link to='/'>faces</Link></h1>
@@ -15,10 +16,7 @@ const Header = () => {
                         <li>
                             <Link to='/teams'>Teams</Link>
                         </li>
-                    
-                    <li>All Team Members</li>
-                    <li></li>
-                    <li></li>
+                    { teams.map(team => <li className="menu__subitem">{team.name}</li>) }
                 </ul>
             </nav>
         </header>

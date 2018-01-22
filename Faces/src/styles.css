@@ -50,6 +50,10 @@ body {
     }
 }
 
+.menu__subitem {
+    margin-left: 1.5rem;
+}
+
 .app-title a {
     text-decoration: none;
     color: #001386;

@@ -151,7 +151,7 @@ render() {
     return (
         <BrowserRouter>
             <div className={"app-container" + (modal.open ? ' modal-opened' : '')} >
-                <Header />
+                <Header teams={teams} />
                 <main className="app-content">
                     <header className="controls-bar">
 
