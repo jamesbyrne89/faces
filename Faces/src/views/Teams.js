@@ -12,7 +12,7 @@ const Teams = props => {
                 <button className="btn btn-option">New Team</button>
             </header>
             <ul className="app-content">
-                {props.teams.map((team, i) => <li key={i}><TeamCard modalHandler={props.modalHandler} team={team.name} members={team.profiles} />{i}</li>)}
+                {props.teams.map((team, i) => <li key={i}><TeamCard modalHandler={props.modalHandler} team={team.name} members={team.profiles} /></li>)}
             </ul>
         </div>
     );

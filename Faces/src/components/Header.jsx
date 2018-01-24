@@ -16,7 +16,7 @@ const Header = (props) => {
                         <li>
                             <Link to='/teams'>Teams</Link>
                         </li>
-                    { teams.map(team => <li className="menu__subitem">{team.name}</li>) }
+                    { teams.map((team, i) => <li className="menu__subitem" key={i}>{team.name}</li>) }
                 </ul>
             </nav>
         </header>

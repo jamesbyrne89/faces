@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NewPhoto from '../views/NewPhoto';
+import { Link } from 'react-router-dom';
 
 
 class LocationsDropdown extends Component {
@@ -21,27 +21,21 @@ class LocationsDropdown extends Component {
         return locations.list.filter(loc => loc !== locations.current  )
     }
 
-    renderDropdown() {
-        if (this.state.visible) {
-        return (
-                <div className="menu-dropdown">
-                    <ul>{this.getLocationsList().map(loc=><li key={loc}><button className="btn">{loc}</button></li>)}</ul>
-                </div>
-        ) 
-     }
-     else { return }
-    }
 
     render() {
-        let isVisible = this.state.visible;
        const locationList = this.getLocationsList.bind(this)
     return (
         <li>
-            <button className="btn location" onClick={this.showHide.bind(this)}><i className="fa fa-map-marker"></i> London</button>
-            {this.renderDropdown()}
+            <button className="btn location" onClick={this.showHide.bind(this)}><i className="fa fa-map-marker"></i> London
+            </button>
+            <div className="menu-dropdown__wrapper">
+            <div className="menu-dropdown">
+                    <ul>{this.getLocationsList().map(loc=><li key={loc}><a className="btn">{loc}</a></li>)}</ul>
+                </div>
+                </div>
         </li>
     );
-    }
+}
 }
 
 export default LocationsDropdown;

@@ -155,7 +155,7 @@ render() {
                 <main className="app-content">
                     <header className="controls-bar">
 
-                        <ul>
+                        <ul className="controls-bar__controls">
                             <li>Warehouse Fashions</li>
                             <LocationsDropdown locations={locations} />
                             <li><button className="btn">Sign Out</button></li>
