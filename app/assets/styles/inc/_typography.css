@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'Inter-UI-Black';
-    src: url('assets/fonts/Inter-UI-Black.WOFF') format('woff'), url('assets/fonts/Inter-UI-Black.WOFF') format('woff'), url('assets/fonts/Inter-UI-Black.ttf') format('ttf'), url('assets/fonts/Inter-UI-Black.eot') format('woff'), url('assets/fonts/Inter-UI-Black.svg') format('svg'),
-}
-
-@font-face {
-    font-family: 'Inter UI Medium';
-    src: url('assets/fonts/Inter-UI-Medium.WOFF') format('woff'), url('assets/fonts/Inter-UI-Medium.WOFF') format('woff'), url('assets/fonts/Inter-UI-Medium.ttf') format('ttf'), url('assets/fonts/Inter-UI-Medium.eot') format('woff'), url('assets/fonts/Inter-UI-Medium.svg') format('svg'),
-}
