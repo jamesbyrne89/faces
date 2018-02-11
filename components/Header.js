@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
-const Header = (props) => {
-    console.log('header', props)
+const Header = props => {
+    console.log(props)
     const { teams } = props;
     return (
         <header className="header">
-            <h1 className="app-title"><Link to='/'>faces</Link></h1>
+            <h1 className="app-title"><Link href='/'><a>faces</a></Link></h1>
             <nav>
                 <ul>
                     <li>View seating plan</li>

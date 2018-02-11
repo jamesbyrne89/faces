@@ -12,6 +12,10 @@ var _Header = require('../components/Header');
 
 var _Header2 = _interopRequireDefault(_Header);
 
+var _Head = require('../components/Head');
+
+var _Head2 = _interopRequireDefault(_Head);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = 'E:\\Users\\James\\Web Dev\\Projects\\htdocs\\Faces\\pages\\Teams.js?entry';
@@ -22,19 +26,28 @@ var Teams = function Teams(props) {
     return _react2.default.createElement('div', {
         __source: {
             fileName: _jsxFileName,
-            lineNumber: 8
+            lineNumber: 9
+        }
+    }, _react2.default.createElement(_Head2.default, { title: 'Teams', __source: {
+            fileName: _jsxFileName,
+            lineNumber: 10
+        }
+    }), _react2.default.createElement('div', {
+        __source: {
+            fileName: _jsxFileName,
+            lineNumber: 11
         }
     }, _react2.default.createElement(_Header2.default, {
         __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
+            lineNumber: 12
         }
     }), _react2.default.createElement('ul', { className: 'app-content', __source: {
             fileName: _jsxFileName,
-            lineNumber: 10
+            lineNumber: 13
         }
-    }));
+    })));
 };
 
 exports.default = Teams;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzXFxUZWFtcy5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkNvbXBvbmVudCIsIkhlYWRlciIsIlRlYW1zIiwiY29uc29sZSIsImxvZyIsInByb3BzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSxBQUFPLEFBQVM7Ozs7QUFDaEIsQUFBTyxBQUFZOzs7Ozs7Ozs7QUFHbkIsSUFBTSxRQUFRLFNBQVIsQUFBUSxhQUFTLEFBQ25CO1lBQUEsQUFBUSxJQUFSLEFBQVksQUFDWjsyQkFDSSxjQUFBOztzQkFBQTt3QkFBQSxBQUNJO0FBREo7QUFBQSxLQUFBLGtCQUNJLEFBQUM7O3NCQUFEO3dCQURKLEFBQ0ksQUFDQTtBQURBO0FBQUEsOENBQ0ksV0FBSixBQUFjO3NCQUFkO3dCQUhSLEFBQ0ksQUFFSSxBQUtYO0FBTFc7O0FBTFosQUFZQTs7a0JBQUEsQUFBZSIsImZpbGUiOiJUZWFtcy5qcz9lbnRyeSIsInNvdXJjZVJvb3QiOiJFOi9Vc2Vycy9KYW1lcy9XZWIgRGV2L1Byb2plY3RzL2h0ZG9jcy9GYWNlcyJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzXFxUZWFtcy5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkNvbXBvbmVudCIsIkhlYWRlciIsIlNpdGVIZWFkIiwiVGVhbXMiLCJjb25zb2xlIiwibG9nIiwicHJvcHMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLEFBQU8sQUFBUzs7OztBQUNoQixBQUFPLEFBQVk7Ozs7QUFDbkIsQUFBTyxBQUFjOzs7Ozs7Ozs7QUFHckIsSUFBTSxRQUFRLFNBQVIsQUFBUSxhQUFTLEFBQ25CO1lBQUEsQUFBUSxJQUFSLEFBQVksQUFDWjsyQkFDSSxjQUFBOztzQkFBQTt3QkFBQSxBQUNJO0FBREo7QUFBQSxLQUFBLGtCQUNJLEFBQUMsZ0NBQVMsT0FBVixBQUFpQjtzQkFBakI7d0JBREosQUFDSSxBQUNBO0FBREE7d0JBQ0EsY0FBQTs7c0JBQUE7d0JBQUEsQUFDSTtBQURKO0FBQUEsdUJBQ0ksQUFBQzs7c0JBQUQ7d0JBREosQUFDSSxBQUNBO0FBREE7QUFBQSw4Q0FDSSxXQUFKLEFBQWM7c0JBQWQ7d0JBTFosQUFDSSxBQUVJLEFBRUksQUFNZjtBQU5lOztBQVBoQixBQWVBOztrQkFBQSxBQUFlIiwiZmlsZSI6IlRlYW1zLmpzP2VudHJ5Iiwic291cmNlUm9vdCI6IkU6L1VzZXJzL0phbWVzL1dlYiBEZXYvUHJvamVjdHMvaHRkb2NzL0ZhY2VzIn0=

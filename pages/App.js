@@ -5,6 +5,7 @@ import ProfileCard from '../components/ProfileCard';
 import LocationsDropdown from '../components/LocationsDropdown';
 import Header from '../components/Header';
 import Link from 'next/link';
+import base from '../models/Data';
 
 
 class App extends Component {
@@ -135,18 +136,22 @@ modalHandler(openState, content) {
     });
 }
 
-
-
-
+componentWillMount() {
+    base.syncState('teams', {
+        context: this,
+        state: 'teams'
+    })
+}
 
 render() {
     const { teams, locations, modal } = this.state;
-    const allEmployees = teams.map(team => team.profiles)
+   // const allEmployees = teams.map(team => team.profiles)
     const modalHandler = this.modalHandler.bind(this);
     const filterTeams = this.filterTeams.bind(this);
-
+    console.log(teams)
     return (
             <div className={"app-container" + (modal.open ? ' modal-opened' : '')} >
+            
                 <Header teams={teams} />
                 <main className="app-content">
                     <header className="controls-bar">
@@ -157,7 +162,7 @@ render() {
                             <li><button className="btn">Sign Out</button></li>
                         </ul>
                     </header>
-                    <Dashboard profiles={allEmployees} modalHandler={this.modalHandler} />} />
+                    <Dashboard profiles={'allEmployees'} modalHandler={this.modalHandler} />
                     <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />
                 </main>
             </div>
