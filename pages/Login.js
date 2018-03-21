@@ -15,6 +15,7 @@ const Login = () => {
                 <h2 className="login__title">Login here</h2>
                     <input type="text" />
                     <input type="password" />
+                    <button>Login</button>
                 </div>
             </body>
         </div>
