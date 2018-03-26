@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM, { Redirect } from 'react-dom';
 import Head from 'next/head';
+import { app, base } from '../models/Data';
 
 class Login extends Component {
     constructor(props) {
@@ -15,25 +16,31 @@ class Login extends Component {
         let email = this.emailInput.value;
         let password = this.passwordInput.value;
         e.preventDefault();
-        console.table([{
-            email: this.emailInput.value,
-            password: this.passwordInput.value
-        }])
+
         app.auth().fetchProvidersForEmail(email)
         .then(provider => {
-            if (providers.length === 0) {
+            if (provider.length === 0) {
                 // Create user
-
+                return app.auth().createUserWithEmailAndPassword(email, password);
             } else {
                 // Sign user in
             }
  
         })
+        .then (user => {
+            console.log(user || 'user is undefined')
+            if (user && user.email) {
+                email = '';
+                password = '';
+                this.setState({ redirect: true });
+                console.log('Successfully logged in')
+            }
+        })
         .catch(err => {
             console.error(err);
         })
-        email = '';
-        password = '';
+        
+        
     }
 
     render() {
