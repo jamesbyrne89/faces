@@ -1,22 +1,39 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { Redirect } from 'react-dom';
 import Head from 'next/head';
 
 class Login extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            redirect: false
+        }
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
     }
 
     authenticateWithEmail(e) {
-        console.log(e)
+        let email = this.emailInput.value;
+        let password = this.passwordInput.value;
         e.preventDefault();
         console.table([{
             email: this.emailInput.value,
             password: this.passwordInput.value
         }])
-        this.emailInput.value = '';
-        this.passwordInput.value = '';
+        app.auth().fetchProvidersForEmail(email)
+        .then(provider => {
+            if (providers.length === 0) {
+                // Create user
+
+            } else {
+                // Sign user in
+            }
+ 
+        })
+        .catch(err => {
+            console.error(err);
+        })
+        email = '';
+        password = '';
     }
 
     render() {

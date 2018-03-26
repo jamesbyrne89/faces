@@ -5,7 +5,7 @@ import ProfileCard from '../components/ProfileCard';
 import LocationsDropdown from '../components/LocationsDropdown';
 import Header from '../components/Header';
 import Link from 'next/link';
-import base from '../models/Data';
+import { base } from '../models/Data';
 
 
 class App extends Component {
