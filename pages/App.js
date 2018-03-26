@@ -12,6 +12,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            authenticated: false,
+            admin: false,
             teams: [
                 { name: "Digital",
                     profiles: [{
