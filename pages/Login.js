@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Head from 'next/head';
 
-const Login = () => {
+class Login extends Component {
+    constructor(props) {
+        super(props)
+        this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
+    }
+
+    authenticateWithEmail(e) {
+        e.preventDefault();
+        console.table([{
+            email: this.emailInput.value,
+            password: this.passwordInput.value
+        }])
+    }
+
+    render() {
     return (
         <div>
             <Head>
@@ -13,13 +27,14 @@ const Login = () => {
             <body>
                 <div className="login-container">
                 <h2 className="login__title">Login here</h2>
-                    <input type="text" />
-                    <input type="password" />
-                    <button>Login</button>
+                    <input ref={emailInput} type="text" />
+                    <input ref={passwordInput} type="password" />
+                    <button onClick={authenticateWithEmail}>Login</button>
                 </div>
-            </body>
+            </body> 
         </div>
     )
+}
 }
 
 export default Login;
