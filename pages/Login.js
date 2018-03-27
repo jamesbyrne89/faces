@@ -18,29 +18,29 @@ class Login extends Component {
         e.preventDefault();
 
         app.auth().fetchProvidersForEmail(email)
-        .then(provider => {
-            if (provider.length === 0) {
-                // Create user
-                return app.auth().createUserWithEmailAndPassword(email, password);
-            } else {
-                // Sign user in
-            }
- 
-        })
-        .then (user => {
-            console.log(user || 'user is undefined')
-            if (user && user.email) {
-                email = '';
-                password = '';
-                this.setState({ redirect: true });
-                console.log('Successfully logged in')
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        })
-        
-        
+            .then(provider => {
+                if (provider.length === 0) {
+                    // Create user
+                    return app.auth().createUserWithEmailAndPassword(email, password);
+                } else {
+                    // Sign user in
+                }
+
+            })
+            .then(user => {
+                console.log(user || 'user is undefined')
+                if (user && user.email) {
+                    email = '';
+                    password = '';
+                    this.setState({ redirect: true });
+                    console.log('Successfully logged in')
+                }
+            })
+            .catch(err => {
+                console.error(err);
+            })
+
+
     }
 
     render() {
@@ -53,17 +53,19 @@ class Login extends Component {
                 </Head>
                 <main className="wrapper">
                     <div className="login-container">
-                        <h2 className="login__title">Login here</h2>
+                        <h2 className="login__title">Login</h2>
                         <button className="btn login-method fb-login">Login with Facebook</button>
                         <button className="btn login-method tw-login">Login with Twitter</button>
                         <button className="btn login-method gh-login">Login with Github</button>
-                        <form onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
-                            <input ref={(input) => { this.emailInput = input }} type="text" />
-                            <input ref={(input) => { this.passwordInput = input }} type="password" />
-                            <button ref={(button) => { this.submitButton = button }} onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>
+                        <form className="login__form" onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
+                            <label className="input-label">Email</label>
+                            <input className="login__email" ref={(input) => { this.emailInput = input }} type="text" />
+                            <label className="input-label">Password</label>
+                            <input className="login__password" ref={(input) => { this.passwordInput = input }} type="password" />
+                            <button className="btn btn-submit" ref={(button) => { this.submitButton = button }} onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>
                         </form>
                     </div>
-                    </main>
+                </main>
             </div>
         )
     }

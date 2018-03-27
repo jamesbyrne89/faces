@@ -2,19 +2,92 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -24,8 +97,17 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -33,16 +115,20 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none;
 }
@@ -50,6 +136,10 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+input {
+  outline: none;
 }
 
 @font-face {
@@ -61,6 +151,9 @@ table {
 
 .login-container {
   margin-top: 200px;
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
 }
 
 .wrapper {
@@ -73,17 +166,64 @@ table {
   justify-content: center;
 }
 
+.login__title {
+  padding: 1em;
+  border-bottom: 1px solid #dcdee6;
+  text-align: left;
+  font-size: 1.5em;
+}
+
 .btn.login-method {
   background: #001386;
   padding: 0.675rem 1rem 0.5rem;
   color: #fff;
-  border-radius: 4px;
   display: block;
-  min-width: 135px;
+  min-width: 200px;
   text-align: left;
   -webkit-transition: all .15s ease;
   transition: all .15s ease;
   margin: 1em auto;
+  text-align: center;
+}
+
+.btn.btn-submit {
+  margin-top: 2rem;
+  float: right;
+  background: #001386;
+  color: #fff;
+  padding: 0.675rem 1rem 0.5rem;
+  min-width: 80px;
+}
+
+input {
+  display: block;
+  border: 1px solid #dcdee6;
+  border-radius: 3px;
+  padding: 3px 3px 0 13px;
+  height: 2.5rem;
+  font-size: 1.125rem;
+}
+
+input:focus {
+  border: solid 1px #4841cc;
+}
+
+.input-label {
+  display: block;
+  text-align: left;
+  margin-top: 1.5em;
+  font-size: 1.125rem;
+}
+
+.login__email,
+.login__password {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.login__form {
+  padding: 0 2em 2em;
+  overflow: hidden;
 }
 
 body {
@@ -201,6 +341,7 @@ body {
   cursor: pointer;
   font-weight: bold;
   font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
+  border-radius: 4px;
 }
 
 .btn-option {
