@@ -51,16 +51,19 @@ class Login extends Component {
                     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"></link>
                     <link href="/static/styles/styles.css" rel="stylesheet"></link>
                 </Head>
-                <body>
+                <main className="wrapper">
                     <div className="login-container">
                         <h2 className="login__title">Login here</h2>
+                        <button className="btn login-method fb-login">Login with Facebook</button>
+                        <button className="btn login-method tw-login">Login with Twitter</button>
+                        <button className="btn login-method gh-login">Login with Github</button>
                         <form onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
                             <input ref={(input) => { this.emailInput = input }} type="text" />
                             <input ref={(input) => { this.passwordInput = input }} type="password" />
                             <button ref={(button) => { this.submitButton = button }} onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>
                         </form>
                     </div>
-                </body>
+                    </main>
             </div>
         )
     }

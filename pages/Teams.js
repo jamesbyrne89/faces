@@ -8,12 +8,12 @@ const Teams = props => {
     return (
         <div>
             <SiteHead title={'Teams'} />
-            <div>
+            <main className="app-container">
                 <Header />
                 <ul className="app-content">
                     {/* {props.teams.map((team, i) => <li key={i}><TeamCard modalHandler={props.modalHandler} team={team.name} members={team.profiles} /></li>)} */}
                 </ul>
-            </div>
+            </main>
         </div>
     );
 }

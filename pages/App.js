@@ -152,11 +152,9 @@ render() {
     const filterTeams = this.filterTeams.bind(this);
     console.log(teams)
     return (
-            <div className="app-container">
             
                 <Login />
-                
-            </div>
+            
     );
 }
 }
