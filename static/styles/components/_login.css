@@ -22,6 +22,7 @@
   border-bottom: 1px solid #dcdee6;
   text-align: left;
   font-size: 1.5em;
+  color: #001386;
 }
 
 .login__methods {
@@ -29,14 +30,11 @@
 }
 
 .btn.login-method {
-  background: #001386;
   padding: 0.675rem 1rem 0.5rem;
   color: #fff;
   display: block;
   min-width: 200px;
   text-align: left;
-  -webkit-transition: all .15s ease;
-  transition: all .15s ease;
   margin: 1em auto;
   text-align: center;
   display: -webkit-box;
@@ -47,10 +45,22 @@
   align-items: center;
 }
 
+.btn.fb-login {
+  background: #3b5998;
+}
+
+.btn.tw-login {
+  background: #1da1f2;
+}
+
+.btn.gh-login {
+  background: #333;
+}
+
 .btn.login-method:hover,
 .btn.btn-submit:hover {
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 3px 10px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 3px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 4px 10px rgba(50, 50, 93, 0.11), 0 3px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(50, 50, 93, 0.11), 0 3px 10px rgba(0, 0, 0, 0.05);
   -webkit-transform: translateY(-1px);
   transform: translateY(-1px);
   background: #4841cc;

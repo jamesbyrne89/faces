@@ -44,9 +44,12 @@ body {
     margin-left: 1.5rem;
 }
 
-.app-title a {
-    text-decoration: none;
-    color: #001386;
+.app-title {
+    font-size: 2rem;
+    a {
+        text-decoration: none;
+        color: #001386;
+    }
 }
 
 .header ul {
@@ -116,6 +119,8 @@ body {
     font-weight: bold;
     font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
     border-radius: 4px;
+    -webkit-transition: all .15s ease;
+    transition: all .15s ease;
 }
 
 .btn svg {
