@@ -88,6 +88,8 @@ class Login extends Component {
             <div>
                 <Head>
                     <title>faces | Login</title>
+                    <link href="/static/images/favicon-64x64.png?v=2" rel="icon" sizes="64x64" type="image/png"></link>
+                    <link href="/static/images/favicon-32x32.png?v=2" rel="icon" sizes="32x32" type="image/png"></link>
                     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"></link>
                     <link href="/static/styles/styles.css" rel="stylesheet"></link>
                 </Head>
