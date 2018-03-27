@@ -39,6 +39,21 @@
     transition: all .15s ease;
     margin: 1em auto;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.btn.login-method:hover,
+.btn.btn-submit:hover {
+    -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 3px 10px rgba(0, 0, 0, .5);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 3px 10px rgba(0, 0, 0, .5);
+    -webkit-transform: translateY(-1px);
+    transform: translateY(-1px);
+    background: #4841cc;
 }
 
 .btn.btn-submit {
