@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Dashboard from '../components/Dashboard';
 import Modal from '../components/Modal';
 import ProfileCard from '../components/ProfileCard';
 import LocationsDropdown from '../components/LocationsDropdown';
@@ -8,10 +7,11 @@ import Link from 'next/link';
 import base from '../models/Data';
 
 
-const Dashboard = ()=> {
+const Dashboard = (props)=> {
     return (
-            <div className={"app-container" + (modal.open ? ' modal-opened' : '')} >
-            
+        
+            <div className="app-container" >
+
                 <Header teams={teams} />
                 <main className="app-content">
                     <header className="controls-bar">
@@ -23,11 +23,10 @@ const Dashboard = ()=> {
                         </ul>
                     </header>
                     <Dashboard profiles={'allEmployees'} modalHandler={this.modalHandler} />
-                    <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />
+                    {/* <Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} /> */}
                 </main>
             </div>
     );
 }
-}
 
-export default App;
+export default Dashboard;

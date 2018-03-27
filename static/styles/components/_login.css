@@ -3,6 +3,8 @@
   text-align: center;
   background: #fff;
   border-radius: 8px;
+  width: 400px;
+  max-width: 95%;
 }
 
 .wrapper {
@@ -20,6 +22,10 @@
   border-bottom: 1px solid #dcdee6;
   text-align: left;
   font-size: 1.5em;
+}
+
+.login__methods {
+  padding: 2em;
 }
 
 .btn.login-method {
@@ -60,8 +66,12 @@ input:focus {
 .input-label {
   display: block;
   text-align: left;
-  margin-top: 1.5em;
+  margin-top: 2em;
   font-size: 1.125rem;
+}
+
+.input-label:first-of-type {
+  margin-top: 0;
 }
 
 .login__email,

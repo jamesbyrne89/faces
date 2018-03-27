@@ -150,7 +150,6 @@ render() {
    // const allEmployees = teams.map(team => team.profiles)
     const modalHandler = this.modalHandler.bind(this);
     const filterTeams = this.filterTeams.bind(this);
-    console.log(teams)
     return (
             
                 <Login />

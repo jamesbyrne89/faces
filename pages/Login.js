@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM, { Redirect } from 'react-dom';
 import Head from 'next/head';
-import { app, base } from '../models/Data';
+import { app, base, facebookProvider } from '../models/Data';
 
 class Login extends Component {
     constructor(props) {
@@ -9,7 +9,21 @@ class Login extends Component {
         this.state = {
             redirect: false
         }
+        this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
+    }
+
+    authenticateWithFacebook() {
+        app.auth().signInWithPopup(facebookProvider)
+        .then((result, err) => {
+            if (err) {
+                // Show error
+                alert('Unable to sign in with Facebook');
+            }
+            else {
+                this.setState({ redirect: true });
+            }
+        })
     }
 
     authenticateWithEmail(e) {
@@ -44,6 +58,10 @@ class Login extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/dashboard" />
+        }
+
         return (
             <div>
                 <Head>
@@ -54,12 +72,14 @@ class Login extends Component {
                 <main className="wrapper">
                     <div className="login-container">
                         <h2 className="login__title">Login</h2>
-                        <button className="btn login-method fb-login">Login with Facebook</button>
-                        <button className="btn login-method tw-login">Login with Twitter</button>
-                        <button className="btn login-method gh-login">Login with Github</button>
+                        <div className="login__methods">
+                            <button className="btn login-method fb-login" onClick={this.authenticateWithFacebook}>Login with Facebook</button>
+                            <button className="btn login-method tw-login">Login with Twitter</button>
+                            <button className="btn login-method gh-login">Login with Github</button>
+                        </div>
                         <form className="login__form" onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
                             <label className="input-label">Email</label>
-                            <input className="login__email" ref={(input) => { this.emailInput = input }} type="text" />
+                            <input className="login__email" ref={(input) => { this.emailInput = input }} type="email" />
                             <label className="input-label">Password</label>
                             <input className="login__password" ref={(input) => { this.passwordInput = input }} type="password" />
                             <button className="btn btn-submit" ref={(button) => { this.submitButton = button }} onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>

@@ -54,14 +54,29 @@ var Login = function (_Component) {
         _this.state = {
             redirect: false
         };
+        _this.authenticateWithFacebook = _this.authenticateWithFacebook.bind(_this);
         _this.authenticateWithEmail = _this.authenticateWithEmail.bind(_this);
         return _this;
     }
 
     (0, _createClass3.default)(Login, [{
+        key: 'authenticateWithFacebook',
+        value: function authenticateWithFacebook() {
+            var _this2 = this;
+
+            _Data.app.auth().signInWithPopup(_Data.facebookProvider).then(function (result, err) {
+                if (err) {
+                    // Show error
+                    alert('Unable to sign in with Facebook');
+                } else {
+                    _this2.setState({ redirect: true });
+                }
+            });
+        }
+    }, {
         key: 'authenticateWithEmail',
         value: function authenticateWithEmail(e) {
-            var _this2 = this;
+            var _this3 = this;
 
             var email = this.emailInput.value;
             var password = this.passwordInput.value;
@@ -79,7 +94,7 @@ var Login = function (_Component) {
                 if (user && user.email) {
                     email = '';
                     password = '';
-                    _this2.setState({ redirect: true });
+                    _this3.setState({ redirect: true });
                     console.log('Successfully logged in');
                 }
             }).catch(function (err) {
@@ -89,90 +104,102 @@ var Login = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
+
+            if (this.state.redirect) {
+                return _react2.default.createElement(_reactDom.Redirect, { to: '/dashboard', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 62
+                    }
+                });
+            }
 
             return _react2.default.createElement('div', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 48
+                    lineNumber: 66
                 }
             }, _react2.default.createElement(_head2.default, {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 49
+                    lineNumber: 67
                 }
             }, _react2.default.createElement('title', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 50
+                    lineNumber: 68
                 }
             }, 'faces | Dashboard'), _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Lato:400,700,900', rel: 'stylesheet', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 51
+                    lineNumber: 69
                 }
             }), _react2.default.createElement('link', { href: '/static/styles/styles.css', rel: 'stylesheet', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 52
+                    lineNumber: 70
                 }
             })), _react2.default.createElement('main', { className: 'wrapper', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 54
+                    lineNumber: 72
                 }
             }, _react2.default.createElement('div', { className: 'login-container', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 55
+                    lineNumber: 73
                 }
             }, _react2.default.createElement('h2', { className: 'login__title', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 56
+                    lineNumber: 74
                 }
-            }, 'Login'), _react2.default.createElement('button', { className: 'btn login-method fb-login', __source: {
+            }, 'Login'), _react2.default.createElement('div', { className: 'login__methods', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 57
+                    lineNumber: 75
+                }
+            }, _react2.default.createElement('button', { className: 'btn login-method fb-login', onClick: this.authenticateWithFacebook, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 76
                 }
             }, 'Login with Facebook'), _react2.default.createElement('button', { className: 'btn login-method tw-login', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 58
+                    lineNumber: 77
                 }
             }, 'Login with Twitter'), _react2.default.createElement('button', { className: 'btn login-method gh-login', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 59
+                    lineNumber: 78
                 }
-            }, 'Login with Github'), _react2.default.createElement('form', { className: 'login__form', onSubmit: function onSubmit(e) {
-                    _this3.authenticateWithEmail;
+            }, 'Login with Github')), _react2.default.createElement('form', { className: 'login__form', onSubmit: function onSubmit(e) {
+                    _this4.authenticateWithEmail;
                 }, ref: function ref(form) {
-                    _this3.loginForm = form;
+                    _this4.loginForm = form;
                 }, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 60
+                    lineNumber: 80
                 }
             }, _react2.default.createElement('label', { className: 'input-label', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 61
+                    lineNumber: 81
                 }
             }, 'Email'), _react2.default.createElement('input', { className: 'login__email', ref: function ref(input) {
-                    _this3.emailInput = input;
-                }, type: 'text', __source: {
+                    _this4.emailInput = input;
+                }, type: 'email', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 62
+                    lineNumber: 82
                 }
             }), _react2.default.createElement('label', { className: 'input-label', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 63
+                    lineNumber: 83
                 }
             }, 'Password'), _react2.default.createElement('input', { className: 'login__password', ref: function ref(input) {
-                    _this3.passwordInput = input;
+                    _this4.passwordInput = input;
                 }, type: 'password', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 64
+                    lineNumber: 84
                 }
             }), _react2.default.createElement('button', { className: 'btn btn-submit', ref: function ref(button) {
-                    _this3.submitButton = button;
+                    _this4.submitButton = button;
                 }, onClick: function onClick(e) {
-                    _this3.authenticateWithEmail(e);
+                    _this4.authenticateWithEmail(e);
                 }, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 65
+                    lineNumber: 85
                 }
             }, 'Login')))));
         }
@@ -182,4 +209,4 @@ var Login = function (_Component) {
 }(_react.Component);
 
 exports.default = Login;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzXFxMb2dpbi5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkNvbXBvbmVudCIsIlJlYWN0RE9NIiwiUmVkaXJlY3QiLCJIZWFkIiwiYXBwIiwiYmFzZSIsIkxvZ2luIiwicHJvcHMiLCJzdGF0ZSIsInJlZGlyZWN0IiwiYXV0aGVudGljYXRlV2l0aEVtYWlsIiwiYmluZCIsImUiLCJlbWFpbCIsImVtYWlsSW5wdXQiLCJ2YWx1ZSIsInBhc3N3b3JkIiwicGFzc3dvcmRJbnB1dCIsInByZXZlbnREZWZhdWx0IiwiYXV0aCIsImZldGNoUHJvdmlkZXJzRm9yRW1haWwiLCJ0aGVuIiwicHJvdmlkZXIiLCJsZW5ndGgiLCJjcmVhdGVVc2VyV2l0aEVtYWlsQW5kUGFzc3dvcmQiLCJjb25zb2xlIiwibG9nIiwidXNlciIsInNldFN0YXRlIiwiY2F0Y2giLCJlcnJvciIsImVyciIsImZvcm0iLCJsb2dpbkZvcm0iLCJpbnB1dCIsImJ1dHRvbiIsInN1Ym1pdEJ1dHRvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxBQUFPLEFBQVM7Ozs7QUFDaEIsQUFBTyxBQUFZOzs7O0FBQ25CLEFBQU87Ozs7QUFDUCxBQUFTLEFBQUssQUFBWTs7Ozs7OztJLEFBRXBCO21DQUNGOzttQkFBQSxBQUFZLE9BQU87NENBQUE7O3dJQUFBLEFBQ1QsQUFDTjs7Y0FBQSxBQUFLO3NCQUFMLEFBQWEsQUFDQyxBQUVkO0FBSGEsQUFDVDtjQUVKLEFBQUssd0JBQXdCLE1BQUEsQUFBSyxzQkFBTCxBQUEyQixLQUx6QyxBQUtmO2VBQ0g7Ozs7OzhDLEFBRXFCLEdBQUc7eUJBQ3JCOztnQkFBSSxRQUFRLEtBQUEsQUFBSyxXQUFqQixBQUE0QixBQUM1QjtnQkFBSSxXQUFXLEtBQUEsQUFBSyxjQUFwQixBQUFrQyxBQUNsQztjQUFBLEFBQUUsQUFFRjs7c0JBQUEsQUFBSSxPQUFKLEFBQVcsdUJBQVgsQUFBa0MsT0FBbEMsQUFDSyxLQUFLLG9CQUFZLEFB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
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzXFxMb2dpbi5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkNvbXBvbmVudCIsIlJlYWN0RE9NIiwiUmVkaXJlY3QiLCJIZWFkIiwiYXBwIiwiYmFzZSIsImZhY2Vib29rUHJvdmlkZXIiLCJMb2dpbiIsInByb3BzIiwic3RhdGUiLCJyZWRpcmVjdCIsImF1dGhlbnRpY2F0ZVdpdGhGYWNlYm9vayIsImJpbmQiLCJhdXRoZW50aWNhdGVXaXRoRW1haWwiLCJhdXRoIiwic2lnbkluV2l0aFBvcHVwIiwidGhlbiIsInJlc3VsdCIsImVyciIsImFsZXJ0Iiwic2V0U3RhdGUiLCJlIiwiZW1haWwiLCJlbWFpbElucHV0IiwidmFsdWUiLCJwYXNzd29yZCIsInBhc3N3b3JkSW5wdXQiLCJwcmV2ZW50RGVmYXVsdCIsImZldGNoUHJvdmlkZXJzRm9yRW1haWwiLCJwcm92aWRlciIsImxlbmd0aCIsImNyZWF0ZVVzZXJXaXRoRW1haWxBbmRQYXNzd29yZCIsImNvbnNvbGUiLCJsb2ciLCJ1c2VyIiwiY2F0Y2giLCJlcnJvciIsImZvcm0iLCJsb2dpbkZvcm0iLCJpbnB1dCIsImJ1dHRvbiIsInN1Ym1pdEJ1dHRvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxBQUFPLEFBQVM7Ozs7QUFDaEIsQUFBTyxBQUFZOzs7O0FBQ25CLEFBQU87Ozs7QUFDUCxBQUFTLEFBQUssQUFBTSxBQUF3Qjs7Ozs7OztJQUV0QyxBO21DQUNGOzttQkFBQSxBQUFZLE9BQU87NENBQUE7O3dJQUFBLEFBQ1QsQUFDTjs7Y0FBQSxBQUFLO3NCQUFMLEFBQWEsQUFDQyxBQUVkO0FBSGEsQUFDVDtjQUVKLEFBQUssMkJBQTJCLE1BQUEsQUFBSyx5QkFBTCxBQUE4QixLQUE5RCxBQUNBO2NBQUEsQUFBSyx3QkFBd0IsTUFBQSxBQUFLLHNCQUFMLEFBQTJCLEtBTnpDLEFBTWY7ZUFDSDs7Ozs7bURBRTBCO3lCQUN2Qjs7c0JBQUEsQUFBSSxPQUFKLEFBQVcs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QUFLLGFBQUEsQUFBQyxPQUFVLEFBQUU7MkJBQUEsQUFBSyxhQUFMLEFBQWtCLEFBQU87QUFBM0UsbUJBQTZFLE1BQTdFLEFBQWtGOzhCQUFsRjtnQ0FGSixBQUVJLEFBQ0E7QUFEQTtnQ0FDQSxjQUFBLFdBQU8sV0FBUCxBQUFpQjs4QkFBakI7Z0NBQUE7QUFBQTtlQUhKLEFBR0ksQUFDQSxzREFBTyxXQUFQLEFBQWlCLG1CQUFrQixLQUFLLGFBQUEsQUFBQyxPQUFVLEFBQUU7MkJBQUEsQUFBSyxnQkFBTCxBQUFxQixBQUFPO0FBQWpGLG1CQUFtRixNQUFuRixBQUF3Rjs4QkFBeEY7Z0NBSkosQUFJSSxBQUNBO0FBREE7Z0NBQ0EsY0FBQSxZQUFRLFdBQVIsQUFBa0Isa0JBQWlCLEtBQUssYUFBQSxBQUFDLFFBQVcsQUFBRTsyQkFBQSxBQUFLLGVBQUwsQUFBb0IsQUFBUTtBQUFsRixtQkFBb0YsU0FBUyxpQkFBQSxBQUFDLEdBQU0sQUFBRTsyQkFBQSxBQUFLLHNCQUFMLEFBQTJCLEFBQUk7QUFBckk7OEJBQUE7Z0NBQUE7QUFBQTtlQXBCcEIsQUFDSSxBQU1JLEFBQ0ksQUFPSSxBQUtJLEFBTXZCOzs7OztBQXJGZSxBLEFBd0ZwQjs7a0JBQUEsQUFBZSIsImZpbGUiOiJMb2dpbi5qcyIsInNvdXJjZVJvb3QiOiJFOi9Vc2Vycy9KYW1lcy9XZWIgRGV2L1Byb2plY3RzL0ZhY2VzIn0=

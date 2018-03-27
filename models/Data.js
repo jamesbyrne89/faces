@@ -13,6 +13,8 @@ const config = {
   };
 
 const app = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-const base = Rebase.createClass(app.database())
+const base = Rebase.createClass(app.database());
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-export { app, base };
+
+export { app, base, facebookProvider };
