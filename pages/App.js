@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Login from '../pages/Login';
 import Modal from '../components/Modal';
 import ProfileCard from '../components/ProfileCard';
-import LocationsDropdown from '../components/LocationsDropdown';
-import Header from '../components/Header';
 import Link from 'next/link';
 import { base } from '../models/Data';
 
