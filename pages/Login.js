@@ -14,6 +14,7 @@ class Login extends Component {
         this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
         this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
+        this.handleErrors = this.handleErrors.bind(this);
     }
 
     authenticateWithFacebook() {
@@ -73,10 +74,26 @@ class Login extends Component {
                 }
             })
             .catch(err => {
+                this.handleErrors(err);
+                console.error(err.code);
                 console.error(err.message);
             })
+    }
 
-
+    handleErrors(err) {
+        console.log(err.code === 'auth/invalid-email')
+        if (err.code === 'auth/invalid-email') {
+            this.emailInput.classList.add('invalid');
+        }
+        else if (err.code !== 'auth/invalid-email') {
+            this.emailInput.classList.remove('invalid');
+        }
+        if (err.code === 'auth/wrong-password') {
+            this.passwordInput.classList.add('invalid');
+        }
+        else if (err.code !== 'auth/wrong-password') {
+            this.passwordInput.classList.add('invalid');
+        }
     }
 
     render() {

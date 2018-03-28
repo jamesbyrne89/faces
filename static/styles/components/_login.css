@@ -88,6 +88,10 @@ input:focus {
   border: solid 1px #4841cc;
 }
 
+input.invalid {
+  border: solid 1px #f2545b;
+}
+
 .input-label {
   display: block;
   text-align: left;
