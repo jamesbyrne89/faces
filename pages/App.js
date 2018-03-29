@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from '../pages/Login';
+import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import ProfileCard from '../components/ProfileCard';
 import Link from 'next/link';
@@ -144,13 +145,13 @@ componentWillMount() {
 }
 
 render() {
-    const { teams, locations, modal } = this.state;
+    const { teams, locations, modal, authenticated } = this.state;
    // const allEmployees = teams.map(team => team.profiles)
     const modalHandler = this.modalHandler.bind(this);
     const filterTeams = this.filterTeams.bind(this);
     return (
             
-                <Login />
+               authenticated ? <Login /> : <Layout locations={locations} />
             
     );
 }

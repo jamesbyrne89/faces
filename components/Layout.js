@@ -10,7 +10,7 @@ const Layout = (props) => {
 
                         <ul className="controls-bar__controls">
                             <li>Warehouse Fashions</li>
-                            <LocationsDropdown locations={locations} />
+                            <LocationsDropdown locations={props.locations} />
                             <li><button className="btn">Sign Out</button></li>
                         </ul>
                     </header>
