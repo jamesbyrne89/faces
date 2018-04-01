@@ -4,16 +4,21 @@ import Head from 'next/head';
 import Teams from '../pages/Teams';
 import Router from 'next/router';
 import { app, base, facebookProvider, githubProvider } from '../models/Data';
+import { CookiesProvider } from 'react-cookie';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             redirect: false,
-            emailInput: '',
-            passwordInput: '',
-            emailInvalid: false,
-            passwordInvalid: false
+            email: {
+                value: '',
+                valid: true
+                },
+            password: {
+                value: '',
+                valid: true
+                }
         }
         this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
         this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
@@ -53,31 +58,31 @@ class Login extends Component {
         const { email, password } = this.state;
         e.preventDefault();
 
-        app.auth().fetchProvidersForEmail(email)
+        app.auth().fetchProvidersForEmail(email.value)
             .then(providers => {
                 if (providers.length === 0) {
                     // Create user
-                    return app.auth().createUserWithEmailAndPassword(email, password);
+                    return app.auth().createUserWithEmailAndPassword(email.value, password.value);
                 } else if (providers.indexOf("password") === -1) {
                     // They used Facebook
                     this.setState({
-                        email: '',
-                        password: ''
+                        email: { value: '' },
+                        password: { value: '' }
                     });
                     alert('Please try an alternative login')
                 } else {
                     // Sign user in
-                    return app.auth().signInWithEmailAndPassword(email, password);
+                    return app.auth().signInWithEmailAndPassword(email.value, password.value);
                 }
 
             })
             .then(user => {
                 if (user && user.email) {
                     this.setState({
-                        email: '',
-                        password: ''
+                        redirect: true,
+                        email: { value: '' },
+                        password: { value: '' }
                     });
-                    this.setState({ redirect: true });
                     console.log('Successfully logged in')
                 }
             })
@@ -89,11 +94,11 @@ class Login extends Component {
     }
 
     emailHandler(e) {
-        this.setState({ email: e.target.value })
+        this.setState({ email: { value: e.target.value } })
     }
 
     passwordHandler(e) {
-        this.setState({ password: e.target.value })
+        this.setState({ password: { value: e.target.value } })
     }    
 
     handleErrors(err) {
@@ -116,13 +121,15 @@ class Login extends Component {
         }
     }
 
-    render() {
-
-        const {  } = this.state;
-
+    componentWillUpdate() {
         if (this.state.redirect) {
             {Router.push('/Teams')}
         }
+    }
+
+    render() {
+
+        const { email, password, redirect } = this.state;
 
         return (
             <div>
@@ -154,15 +161,15 @@ class Login extends Component {
                                 <span>Login with Github</span>
                             </button>
                         </div>
-                        <div className="login__form" onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
+                        <form className="login__form" onSubmit={this.authenticateWithEmail}>
                             <label className="input-label">Email</label>
-                            <input className="login__email" value={this.state.email} type="email" onChange={this.emailHandler} placeholder="Email" />
+                            <input className="login__email" value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
                             <div className={''}></div>
                             <label className="input-label">Password</label>
-                            <input className="login__password" value={this.state.password} type="password" onChange={this.passwordHandler} placeholder="Password" />
+                            <input className="login__password" value={password.value} type="password" onChange={this.passwordHandler} placeholder="Password" />
                             <div className={''}></div>
-                            <button className="btn btn-submit" onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>
-                        </div>
+                            <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
+                        </form>
                     </div>
                 </main>
             </div>
