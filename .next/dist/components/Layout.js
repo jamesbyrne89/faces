@@ -22,43 +22,40 @@ var _jsxFileName = 'E:\\Users\\James\\Web Dev\\Projects\\Faces\\components\\Layo
 
 
 var Layout = function Layout(props) {
+    var signOut = props.signOut;
+    console.log(props);
     return _react2.default.createElement('div', { className: 'app-container', __source: {
             fileName: _jsxFileName,
-            lineNumber: 7
+            lineNumber: 10
         }
-    }, _react2.default.createElement(_Header2.default, {
-        __source: {
+    }, _react2.default.createElement(_Header2.default, { locations: props.locations, teams: props.teams, __source: {
             fileName: _jsxFileName,
-            lineNumber: 8
+            lineNumber: 11
         }
     }), _react2.default.createElement('header', { className: 'controls-bar', __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
+            lineNumber: 12
         }
     }, _react2.default.createElement('ul', { className: 'controls-bar__controls', __source: {
             fileName: _jsxFileName,
-            lineNumber: 11
+            lineNumber: 14
         }
     }, _react2.default.createElement('li', {
         __source: {
             fileName: _jsxFileName,
-            lineNumber: 12
+            lineNumber: 15
         }
-    }, 'Warehouse Fashions'), _react2.default.createElement(_LocationsDropdown2.default, { locations: props.locations, __source: {
-            fileName: _jsxFileName,
-            lineNumber: 13
-        }
-    }), _react2.default.createElement('li', {
+    }, 'Warehouse Fashions'), _react2.default.createElement('li', {
         __source: {
             fileName: _jsxFileName,
-            lineNumber: 14
+            lineNumber: 17
         }
-    }, _react2.default.createElement('button', { className: 'btn', __source: {
+    }, _react2.default.createElement('button', { className: 'btn', onClick: signOut, __source: {
             fileName: _jsxFileName,
-            lineNumber: 14
+            lineNumber: 17
         }
     }, 'Sign Out')))), props.children);
 };
 
 exports.default = Layout;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHNcXExheW91dC5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkhlYWRlciIsIkxvY2F0aW9uc0Ryb3Bkb3duIiwiTGF5b3V0IiwicHJvcHMiLCJsb2NhdGlvbnMiLCJjaGlsZHJlbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUEsQUFBTzs7OztBQUNQLEFBQU8sQUFBWTs7OztBQUNuQixBQUFPLEFBQXVCOzs7Ozs7Ozs7QUFFOUIsSUFBTSxTQUFTLFNBQVQsQUFBUyxPQUFBLEFBQUMsT0FBVSxBQUNsQjsyQkFDSSxjQUFBLFNBQUssV0FBTCxBQUFlO3NCQUFmO3dCQUFBLEFBQ0k7QUFESjtLQUFBLGtCQUNJLEFBQUM7O3NCQUFEO3dCQURKLEFBQ0ksQUFDQTtBQURBO0FBQUEsd0JBQ0EsY0FBQSxZQUFRLFdBQVIsQUFBa0I7c0JBQWxCO3dCQUFBLEFBRVE7QUFGUjt1QkFFUSxjQUFBLFFBQUksV0FBSixBQUFjO3NCQUFkO3dCQUFBLEFBQ0k7QUFESjt1QkFDSSxjQUFBOztzQkFBQTt3QkFBQTtBQUFBO0FBQUEsT0FESixBQUNJLEFBQ0EsdUNBQUEsQUFBQyw2Q0FBa0IsV0FBVyxNQUE5QixBQUFvQztzQkFBcEM7d0JBRkosQUFFSSxBQUNBO0FBREE7d0JBQ0EsY0FBQTs7c0JBQUE7d0JBQUEsQUFBSTtBQUFKO0FBQUEsdUJBQUksY0FBQSxZQUFRLFdBQVIsQUFBa0I7c0JBQWxCO3dCQUFBO0FBQUE7T0FQcEIsQUFFSSxBQUVRLEFBR0ksQUFBSSxBQUdmLHNCQVhULEFBQ0ksQUFVVyxBQUd0QjtBQWZELEFBaUJBOztrQkFBQSxBQUFlIiwiZmlsZSI6IkxheW91dC5qcyIsInNvdXJjZVJvb3QiOiJFOi9Vc2Vycy9KYW1lcy9XZWIgRGV2L1Byb2plY3RzL0ZhY2VzIn0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHNcXExheW91dC5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkhlYWRlciIsIkxvY2F0aW9uc0Ryb3Bkb3duIiwiTGF5b3V0IiwicHJvcHMiLCJzaWduT3V0IiwiY29uc29sZSIsImxvZyIsImxvY2F0aW9ucyIsInRlYW1zIiwiY2hpbGRyZW4iXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLEFBQU87Ozs7QUFDUCxBQUFPLEFBQVk7Ozs7QUFDbkIsQUFBTyxBQUF1Qjs7Ozs7Ozs7O0FBRTlCLElBQU0sU0FBUyxTQUFULEFBQVMsT0FBQSxBQUFDLE9BQVUsQUFDdEI7UUFBTSxVQUFVLE1BQWhCLEFBQXNCLEFBQ3RCO1lBQUEsQUFBUSxJQUFSLEFBQVksQUFDUjsyQkFFSSxjQUFBLFNBQUssV0FBTCxBQUFlO3NCQUFmO3dCQUFBLEFBQ0k7QUFESjtLQUFBLGtCQUNJLEFBQUMsa0NBQU8sV0FBVyxNQUFuQixBQUF5QixXQUFXLE9BQU8sTUFBM0MsQUFBaUQ7c0JBQWpEO3dCQURKLEFBQ0ksQUFDQTtBQURBO3dCQUNBLGNBQUEsWUFBUSxXQUFSLEFBQWtCO3NCQUFsQjt3QkFBQSxBQUVRO0FBRlI7dUJBRVEsY0FBQSxRQUFJLFdBQUosQUFBYztzQkFBZDt3QkFBQSxBQUNJO0FBREo7dUJBQ0ksY0FBQTs7c0JBQUE7d0JBQUE7QUFBQTtBQUFBLE9BREosQUFDSSxBQUVBLHVDQUFBLGNBQUE7O3NCQUFBO3dCQUFBLEFBQUk7QUFBSjtBQUFBLHVCQUFJLGNBQUEsWUFBUSxXQUFSLEFBQWtCLE9BQU0sU0FBeEIsQUFBaUM7c0JBQWpDO3dCQUFBO0FBQUE7T0FQcEIsQUFFSSxBQUVRLEFBR0ksQUFBSSxBQUdmLHNCQVpULEFBRUksQUFVVyxBQUd0QjtBQWxCRCxBQW9CQTs7a0JBQUEsQUFBZSIsImZpbGUiOiJMYXlvdXQuanMiLCJzb3VyY2VSb290IjoiRTovVXNlcnMvSmFtZXMvV2ViIERldi9Qcm9qZWN0cy9GYWNlcyJ9

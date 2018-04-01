@@ -115,6 +115,10 @@ class App extends Component {
     }
 }
 
+signOut() {
+    this.setState({ authenticated: false });
+}
+
 filterTeams(name) {
     let { teams } = this.state;
     let teamName = name.toLowerCase();
@@ -149,9 +153,10 @@ render() {
    // const allEmployees = teams.map(team => team.profiles)
     const modalHandler = this.modalHandler.bind(this);
     const filterTeams = this.filterTeams.bind(this);
+    const signOut = this.signOut.bind(this);
     return (
             
-               authenticated ? <Login /> : <Layout locations={locations} />
+               authenticated ? <Layout teams={teams} signOut={signOut} locations={locations} /> : <Login />
             
     );
 }

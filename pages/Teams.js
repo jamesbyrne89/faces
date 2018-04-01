@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import App from './App';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import SiteHead from '../components/Head';
@@ -7,6 +8,7 @@ import SiteHead from '../components/Head';
 const Teams = props => {
     console.log(props)
     return (
+        <App>
         <Layout>
             <SiteHead title={'Teams'} />
             <main className="app-container">
@@ -15,6 +17,7 @@ const Teams = props => {
                 </ul>
             </main>
         </Layout>
+        </App>
     );
 }
 

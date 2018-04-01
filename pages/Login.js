@@ -9,11 +9,17 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false
+            redirect: false,
+            emailInput: '',
+            passwordInput: '',
+            emailInvalid: false,
+            passwordInvalid: false
         }
         this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
         this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
+        this.emailHandler = this.emailHandler.bind(this);
+        this.passwordHandler = this.passwordHandler.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
     }
 
@@ -44,8 +50,7 @@ class Login extends Component {
     }
 
     authenticateWithEmail(e) {
-        let email = this.emailInput.value;
-        let password = this.passwordInput.value;
+        const { email, password } = this.state;
         e.preventDefault();
 
         app.auth().fetchProvidersForEmail(email)
@@ -55,8 +60,10 @@ class Login extends Component {
                     return app.auth().createUserWithEmailAndPassword(email, password);
                 } else if (providers.indexOf("password") === -1) {
                     // They used Facebook
-                    email = '';
-                    password = '';
+                    this.setState({
+                        email: '',
+                        password: ''
+                    });
                     alert('Please try an alternative login')
                 } else {
                     // Sign user in
@@ -65,10 +72,11 @@ class Login extends Component {
 
             })
             .then(user => {
-                console.log(user || 'user is undefined')
                 if (user && user.email) {
-                    email = '';
-                    password = '';
+                    this.setState({
+                        email: '',
+                        password: ''
+                    });
                     this.setState({ redirect: true });
                     console.log('Successfully logged in')
                 }
@@ -80,23 +88,38 @@ class Login extends Component {
             })
     }
 
+    emailHandler(e) {
+        this.setState({ email: e.target.value })
+    }
+
+    passwordHandler(e) {
+        this.setState({ password: e.target.value })
+    }    
+
     handleErrors(err) {
         console.log(err.code === 'auth/invalid-email')
         if (err.code === 'auth/invalid-email') {
             this.emailInput.classList.add('invalid');
+            this.setState({ emailInvalid: true });
         }
         else if (err.code !== 'auth/invalid-email') {
             this.emailInput.classList.remove('invalid');
+            this.setState({ emailInvalid: false });
         }
         if (err.code === 'auth/wrong-password') {
             this.passwordInput.classList.add('invalid');
+            this.setState({ emailInvalid: true });
         }
         else if (err.code !== 'auth/wrong-password') {
             this.passwordInput.classList.add('invalid');
+            this.setState({ emailInvalid: false });
         }
     }
 
     render() {
+
+        const {  } = this.state;
+
         if (this.state.redirect) {
             {Router.push('/Teams')}
         }
@@ -131,13 +154,15 @@ class Login extends Component {
                                 <span>Login with Github</span>
                             </button>
                         </div>
-                        <form className="login__form" onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
+                        <div className="login__form" onSubmit={(e) => { this.authenticateWithEmail }} ref={(form) => { this.loginForm = form }}>
                             <label className="input-label">Email</label>
-                            <input className="login__email" ref={(input) => { this.emailInput = input }} type="email" placeholder="Email" />
+                            <input className="login__email" value={this.state.email} type="email" onChange={this.emailHandler} placeholder="Email" />
+                            <div className={''}></div>
                             <label className="input-label">Password</label>
-                            <input className="login__password" ref={(input) => { this.passwordInput = input }} type="password" placeholder="Password" />
-                            <button className="btn btn-submit" ref={(button) => { this.submitButton = button }} onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>
-                        </form>
+                            <input className="login__password" value={this.state.password} type="password" onChange={this.passwordHandler} placeholder="Password" />
+                            <div className={''}></div>
+                            <button className="btn btn-submit" onClick={(e) => { this.authenticateWithEmail(e) }}>Login</button>
+                        </div>
                     </div>
                 </main>
             </div>
