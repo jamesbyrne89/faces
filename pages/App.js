@@ -12,6 +12,7 @@ class App extends Component {
         super(props);
         this.state = {
             authenticated: false,
+            uid: '',
             admin: false,
             teams: [
                 { name: "Digital",
@@ -115,6 +116,13 @@ class App extends Component {
     }
 }
 
+checkAuthStatus() {
+    let authenticated = localStorage.getItem('uid');
+    if(authenticated) {
+        alert('Authenticated!!!');
+    }
+}
+
 signOut() {
     this.setState({ authenticated: false });
 }
@@ -142,6 +150,7 @@ modalHandler(openState, content) {
 }
 
 componentWillMount() {
+    this.checkAuthStatus();
     base.syncState('teams', {
         context: this,
         state: 'teams'

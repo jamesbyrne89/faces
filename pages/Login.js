@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM, { Redirect } from 'react-dom';
+import update from 'immutability-helper';
 import Head from 'next/head';
 import Teams from '../pages/Teams';
 import Router from 'next/router';
 import { app, base, facebookProvider, githubProvider } from '../models/Data';
-import { CookiesProvider } from 'react-cookie';
+import { CookiesProvider, Cookies } from 'react-cookie';
+
+
 
 class Login extends Component {
     constructor(props) {
@@ -66,8 +69,8 @@ class Login extends Component {
                 } else if (providers.indexOf("password") === -1) {
                     // They used Facebook
                     this.setState({
-                        email: { value: '' },
-                        password: { value: '' }
+                        email: { value: '', valid },
+                        password: { value: '', valid }
                     });
                     alert('Please try an alternative login')
                 } else {
@@ -80,9 +83,10 @@ class Login extends Component {
                 if (user && user.email) {
                     this.setState({
                         redirect: true,
-                        email: { value: '' },
-                        password: { value: '' }
+                        email: { value: '', valid: true },
+                        password: { value: '', valid: true }
                     });
+                    localStorage.setItem('uid-token', user.uid)
                     console.log('Successfully logged in')
                 }
             })
@@ -94,37 +98,46 @@ class Login extends Component {
     }
 
     emailHandler(e) {
-        this.setState({ email: { value: e.target.value } })
+        let newState = {...this.state};
+        newState.email.value = e.target.value;
+        this.setState({ ...newState })
     }
 
     passwordHandler(e) {
-        this.setState({ password: { value: e.target.value } })
+        let newState = {...this.state};
+        newState.password.value = e.target.value;
+        this.setState({ ...newState })
     }    
 
     handleErrors(err) {
-        console.log(err.code === 'auth/invalid-email')
+        let newState = {...this.state};
+
         if (err.code === 'auth/invalid-email') {
-            this.emailInput.classList.add('invalid');
-            this.setState({ emailInvalid: true });
+            newState.email.valid = false;
+            this.setState({ ...newState });
         }
         else if (err.code !== 'auth/invalid-email') {
-            this.emailInput.classList.remove('invalid');
-            this.setState({ emailInvalid: false });
+            newState.email.valid = true;
+            this.setState({ ...newState });
         }
         if (err.code === 'auth/wrong-password') {
-            this.passwordInput.classList.add('invalid');
-            this.setState({ emailInvalid: true });
+            newState.password.valid = false;
+            this.setState({ ...newState });
         }
         else if (err.code !== 'auth/wrong-password') {
-            this.passwordInput.classList.add('invalid');
-            this.setState({ emailInvalid: false });
+            newState.password.valid = true;
+            this.setState({ ...newState });
         }
     }
 
-    componentWillUpdate() {
+    componentWillMount() {
         if (this.state.redirect) {
-            {Router.push('/Teams')}
+            // {Router.push('/Teams')}
         }
+    }
+
+    componentDidMount() {
+        this.setState({ redirect: false })
     }
 
     render() {
@@ -132,7 +145,7 @@ class Login extends Component {
         const { email, password, redirect } = this.state;
 
         return (
-            <div>
+            <CookiesProvider>
                 <Head>
                     <title>faces | Login</title>
                     <link href="/static/images/favicon-64x64.png?v=2" rel="icon" sizes="64x64" type="image/png"></link>
@@ -163,8 +176,8 @@ class Login extends Component {
                         </div>
                         <form className="login__form" onSubmit={this.authenticateWithEmail}>
                             <label className="input-label">Email</label>
-                            <input className="login__email" value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
-                            <div className={''}></div>
+                            <input className={this.state.email.valid ? 'login__email' : 'login__email invalid'} value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
+                            {this.state.email.valid || <div className={''}>Error</div>}
                             <label className="input-label">Password</label>
                             <input className="login__password" value={password.value} type="password" onChange={this.passwordHandler} placeholder="Password" />
                             <div className={''}></div>
@@ -172,7 +185,7 @@ class Login extends Component {
                         </form>
                     </div>
                 </main>
-            </div>
+            </CookiesProvider>
         )
     }
 }

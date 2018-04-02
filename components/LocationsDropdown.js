@@ -17,8 +17,8 @@ class LocationsDropdown extends Component {
 
     getLocationsList() {
         console.log(this.props)
-        // const { locations } = this.props;
-        // return locations.list.filter(loc => loc !== locations.current  )
+        const { locations } = this.props;
+        return locations.list.filter(loc => loc !== locations.current  )
     }
 
 

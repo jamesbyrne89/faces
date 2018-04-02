@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jamesbyrne89/faces#readme",
   "dependencies": {
     "dotenv": "^5.0.0",
+    "immutability-helper": "^2.6.6",
     "next": "^4.2.3",
     "react": "^16.2.0",
     "react-cookie": "^2.1.4",
