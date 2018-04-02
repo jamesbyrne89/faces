@@ -117,10 +117,7 @@ class App extends Component {
 }
 
 checkAuthStatus() {
-    let authenticated = localStorage.getItem('uid');
-    if(authenticated) {
-        alert('Authenticated!!!');
-    }
+
 }
 
 signOut() {

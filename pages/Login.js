@@ -9,6 +9,13 @@ import { CookiesProvider, Cookies } from 'react-cookie';
 
 
 
+const ErrorMessage = props => {
+    const { input, error, message } = props;
+    return (
+        <div className={`${input}-error` + (error ? ` show` : '')}>{message}</div>
+    )
+}
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -176,11 +183,11 @@ class Login extends Component {
                         </div>
                         <form className="login__form" onSubmit={this.authenticateWithEmail}>
                             <label className="input-label">Email</label>
-                            <input className={this.state.email.valid ? 'login__email' : 'login__email invalid'} value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
-                            {this.state.email.valid || <div className={''}>Error</div>}
+                            <input className={email.valid ? 'login__email' : 'login__email invalid'} value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
+                            <ErrorMessage input={'email'} error={!email.valid} message={'Please provide a valid email'} />
                             <label className="input-label">Password</label>
-                            <input className="login__password" value={password.value} type="password" onChange={this.passwordHandler} placeholder="Password" />
-                            <div className={''}></div>
+                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={password.value} type="password" onChange={this.passwordHandler} placeholder="Password" />
+                            <ErrorMessage input={'password'} error={!password.valid} message={'Incorrect password'} />
                             <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
                         </form>
                     </div>

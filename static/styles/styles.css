@@ -265,6 +265,19 @@ input.invalid {
   overflow: hidden;
 }
 
+.password-error,
+.email-error {
+  visibility: hidden;
+  text-align: left;
+  margin-top: 0.5em;
+}
+
+.password-error.show,
+.email-error.show {
+  visibility: visible;
+  color: #f2545b;
+}
+
 body {
   background: #ebedf6;
   color: #81859a;
