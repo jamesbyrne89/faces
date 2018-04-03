@@ -67,11 +67,12 @@ class Login extends Component {
     authenticateWithEmail(e) {
         const { email, password } = this.state;
         e.preventDefault();
-
         app.auth().fetchProvidersForEmail(email.value)
             .then(providers => {
                 if (providers.length === 0) {
                     // Create user
+                    alert('User not recognised');
+                    return;
                     return app.auth().createUserWithEmailAndPassword(email.value, password.value);
                 } else if (providers.indexOf("password") === -1) {
                     // They used Facebook

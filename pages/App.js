@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import ProfileCard from '../components/ProfileCard';
 import Link from 'next/link';
-import { base } from '../models/Data';
+import { app, base } from '../models/Data';
 
 
 class App extends Component {
@@ -114,10 +114,21 @@ class App extends Component {
                 content: null
         }
     }
+    this.checkAuthStatus = this.checkAuthStatus.bind(this);
 }
 
 checkAuthStatus() {
 
+
+    let user = app.auth().currentUser
+        if (user) {
+          console.log('Logged in')
+          this.setState({ authenticated: true });
+        } else {
+          // No user is signed in.
+          console.warn('Not logged in')
+          this.setState({ authenticated: false });
+        }
 }
 
 signOut() {
@@ -148,6 +159,7 @@ modalHandler(openState, content) {
 
 componentWillMount() {
     this.checkAuthStatus();
+    console.log('Checked auth status')
     base.syncState('teams', {
         context: this,
         state: 'teams'
@@ -160,6 +172,7 @@ render() {
     const modalHandler = this.modalHandler.bind(this);
     const filterTeams = this.filterTeams.bind(this);
     const signOut = this.signOut.bind(this);
+    console.log(authenticated)
     return (
             
                authenticated ? <Layout teams={teams} signOut={signOut} locations={locations} /> : <Login />
