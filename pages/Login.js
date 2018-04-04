@@ -192,7 +192,7 @@ class Login extends Component {
                             <ErrorMessage input={'password'} error={!password.valid} message={'Incorrect password'} />
                             <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
                         </form>
-                        <div className=''>Don't have an account? Sign up <Link href='/SignUp'>here.</Link></div>
+                        <div className='login__signup-link'>Don't have an account? Sign up <Link><a href='/SignUp'>here.</a></Link></div>
                     </div>
                 </main>
             </CookiesProvider>

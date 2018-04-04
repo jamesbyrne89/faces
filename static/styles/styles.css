@@ -231,8 +231,8 @@ input {
   border: 1px solid #dcdee6;
   border-radius: 3px;
   padding: 3px 3px 0 13px;
-  height: 2.5rem;
-  font-size: 1.125rem;
+  height: 2rem;
+  font-size: 1rem;
 }
 
 input:focus {
@@ -246,8 +246,8 @@ input.invalid {
 .input-label {
   display: block;
   text-align: left;
-  margin-top: 2em;
-  font-size: 1.125rem;
+  margin-top: 1.5em;
+  font-size: 1rem;
 }
 
 .input-label:first-of-type {
@@ -256,7 +256,7 @@ input.invalid {
 
 .login__email,
 .login__password {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   width: 100%;
 }
 
@@ -276,6 +276,10 @@ input.invalid {
 .email-error.show {
   visibility: visible;
   color: #f2545b;
+}
+
+.login__signup-link {
+  padding: 1em;
 }
 
 body {
