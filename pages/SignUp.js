@@ -17,22 +17,36 @@ const ErrorMessage = props => {
 }
 
 const errors = {
-    passwordsDoNotMatch: 'Passwords do not match'
+    passwordIncorrect: 'Incorrect password, please try again',
+    passwordsDoNotMatch: 'Passwords do not match',
+    invalidEmail: 'That doesn\'t seem to be a valid email',
+    noEmailFound: 'No account was found with that email address'
 }
+
+    
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+          email: '',
+          passwordOne: '',
+          passwordTwo: ''
         }
-     
+     this.handleInput = this.handleInput.bind(this);
+    }
+
+    handleInput(propertyName, value) {
+        const byPropKey = (propertyName, value) => () => ({
+            [propertyName]: value,
+            });
+            this.setState({ [propertyName]: value });
     }
 
   
     render() {
 
-        const { email, password, redirect } = this.state;
+        const { email, passwordOne, passwordTwo } = this.state;
 
         return (
             <CookiesProvider>
@@ -66,13 +80,13 @@ class SignUp extends Component {
                         </div>
                         <form className="login__form" onSubmit={this.authenticateWithEmail}>
                             <label className="input-label">Email</label>
-                            <input className={email.valid ? 'login__email' : 'login__email invalid'} value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
+                            <input className={''} value={email.value} type="email" onChange={e => this.handleInput('email', e.target.value)} placeholder="Email" />
                             <ErrorMessage input={'email'} error={!email.valid} message={'Please provide a valid email'} />
                             <label className="input-label">Password</label>
-                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={passwordOne.value} type="password" onChange={this.passwordOneHandler} placeholder="Password" />
-                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={passwordTwo.value} type="password" onChange={this.passwordTwoHandler} placeholder="Retype password" />
-                            <ErrorMessage input={'password'} error={!password.valid} message={'Incorrect password'} />
-                            <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
+                            <input className={''} value={passwordOne} type="password" onChange={e => this.handleInput('passwordOne', e.target.value)} placeholder="Password" />
+                            <input className={''} value={passwordTwo} type="password" onChange={e => this.handleInput('passwordTwo', e.target.value)} placeholder="Retype password" />
+                            <ErrorMessage input={'password'} error={''} message={'Incorrect password'} />
+                            <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Sign Up</button>
                         </form>
                     </div>
                 </main>
