@@ -16,138 +16,20 @@ const ErrorMessage = props => {
     )
 }
 
-class Login extends Component {
+const errors = {
+    passwordsDoNotMatch: 'Passwords do not match'
+}
+
+class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false,
-            email: {
-                value: '',
-                valid: true
-                },
-            password: {
-                value: '',
-                valid: true
-                }
+          
         }
-        this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
-        this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
-        this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
-        this.emailHandler = this.emailHandler.bind(this);
-        this.passwordHandler = this.passwordHandler.bind(this);
-        this.handleErrors = this.handleErrors.bind(this);
+     
     }
 
-    authenticateWithFacebook() {
-        app.auth().signInWithPopup(facebookProvider)
-            .then((result, err) => {
-                if (err) {
-                    // Show error
-                    alert('Unable to sign in with Facebook');
-                }
-                else {
-                    this.setState({ redirect: true });
-                }
-            })
-    }
-
-    authenticateWithGithub() {
-        app.auth().signInWithPopup(githubProvider)
-            .then((result, err) => {
-                if (err) {
-                    // Show error
-                    alert('Unable to sign in with Github');
-                }
-                else {
-                    this.setState({ redirect: true });
-                }
-            })
-    }
-
-    authenticateWithEmail(e) {
-        const { email, password } = this.state;
-        e.preventDefault();
-        app.auth().fetchProvidersForEmail(email.value)
-            .then(providers => {
-                if (providers.length === 0) {
-                    // Create user
-                    alert('User not recognised');
-                    return;
-                    return app.auth().createUserWithEmailAndPassword(email.value, password.value);
-                } else if (providers.indexOf("password") === -1) {
-                    // They used Facebook
-                    this.setState({
-                        email: { value: '', valid },
-                        password: { value: '', valid }
-                    });
-                    alert('Please try an alternative login')
-                } else {
-                    // Sign user in
-                    return app.auth().signInWithEmailAndPassword(email.value, password.value);
-                }
-
-            })
-            .then(user => {
-                if (user && user.email) {
-                    this.setState({
-                        redirect: true,
-                        email: { value: '', valid: true },
-                        password: { value: '', valid: true }
-                    });
-                    localStorage.setItem('uid-token', user.uid)
-                    console.log('Successfully logged in')
-                }
-            })
-            .catch(err => {
-                this.handleErrors(err);
-                console.error(err.code);
-                console.error(err.message);
-            })
-    }
-
-    emailHandler(e) {
-        let newState = {...this.state};
-        newState.email.value = e.target.value;
-        this.setState({ ...newState })
-    }
-
-    passwordHandler(e) {
-        let newState = {...this.state};
-        newState.password.value = e.target.value;
-        this.setState({ ...newState })
-    }    
-
-    handleErrors(err) {
-        let newState = {...this.state};
-
-        if (err.code === 'auth/invalid-email') {
-            newState.email.valid = false;
-            this.setState({ ...newState });
-        }
-        else if (err.code !== 'auth/invalid-email') {
-            newState.email.valid = true;
-            this.setState({ ...newState });
-        }
-        if (err.code === 'auth/wrong-password') {
-            newState.password.valid = false;
-            this.setState({ ...newState });
-        }
-        else if (err.code !== 'auth/wrong-password') {
-            newState.password.valid = true;
-            this.setState({ ...newState });
-        }
-    }
-
-    componentWillMount() {
-        if (this.state.redirect) {
-            // {Router.push('/Teams')}
-        }
-    }
-
-    componentDidMount() {
-        this.setState({ redirect: false })
-    }
-
+  
     render() {
 
         const { email, password, redirect } = this.state;
@@ -187,7 +69,8 @@ class Login extends Component {
                             <input className={email.valid ? 'login__email' : 'login__email invalid'} value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
                             <ErrorMessage input={'email'} error={!email.valid} message={'Please provide a valid email'} />
                             <label className="input-label">Password</label>
-                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={password.value} type="password" onChange={this.passwordHandler} placeholder="Password" />
+                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={passwordOne.value} type="password" onChange={this.passwordOneHandler} placeholder="Password" />
+                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={passwordTwo.value} type="password" onChange={this.passwordTwoHandler} placeholder="Retype password" />
                             <ErrorMessage input={'password'} error={!password.valid} message={'Incorrect password'} />
                             <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
                         </form>
@@ -198,4 +81,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default SignUp;
