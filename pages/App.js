@@ -119,7 +119,6 @@ class App extends Component {
 
 checkAuthStatus() {
 
-
     let user = app.auth().currentUser
         if (user) {
           console.log('Logged in')

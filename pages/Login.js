@@ -95,14 +95,12 @@ class Login extends Component {
                         email: { value: '', valid: true },
                         password: { value: '', valid: true }
                     });
-                    localStorage.setItem('uid-token', user.uid)
                     console.log('Successfully logged in')
                 }
             })
             .catch(err => {
                 this.handleErrors(err);
-                console.error(err.code);
-                console.error(err.message);
+
             })
     }
 
