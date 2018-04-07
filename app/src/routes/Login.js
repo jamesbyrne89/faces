@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import Teams from '../components/Teams';
 import { app, base, facebookProvider, githubProvider } from '../models/Data';
+import { Link, withRouter } from 'react-router-dom';
 
+
+
+const Login = ({ history }) => {
+ return  (
+    <main className="wrapper">
+        <LoginForm history={history} />
+    </main>
+    )
+}
 
 
 const ErrorMessage = props => {
@@ -11,12 +21,12 @@ const ErrorMessage = props => {
     )
 }
 
-class Login extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            pasword: ''
+            password: ''
         }
         const errors = {
             passwordIncorrect: 'Incorrect password, please try again',
@@ -59,15 +69,15 @@ class Login extends Component {
 
     authenticateWithEmail(e) {
         const { email, password } = this.state;
+        const { history } = this.props;
         e.preventDefault();
-        app.auth().fetchProvidersForEmail(email.value)
+        app.auth().fetchProvidersForEmail(email)
             .then(providers => {
-                console.log(providers)
                 if (providers.length === 0) {
                     // Create user
                     alert('User not recognised');
                     return;
-                    return app.auth().createUserWithEmailAndPassword(email.value, password.value);
+                    return app.auth().createUserWithEmailAndPassword(email, password);
                 } else if (providers.indexOf("password") === -1) {
                     // They used Facebook
                     this.setState({
@@ -76,13 +86,14 @@ class Login extends Component {
                     alert('Please try an alternative login')
                 } else {
                     // Sign user in
-                    return app.auth().signInWithEmailAndPassword(email.value, password.value);
+                    return app.auth().signInWithEmailAndPassword(email, password);
                 }
-
+                console.log()
             })
             .then(user => {
                 if (user && user.email) {
-          
+                    this.setState( { email: '', password: '' });
+                    history.push('/');
                     console.log('Successfully logged in')
                 }
             })
@@ -96,6 +107,8 @@ class Login extends Component {
         const byPropKey = (propertyName, value) => () => ({
             [propertyName]: value,
             });
+            console.log(this.state)
+            console.log(propertyName)
             this.setState({ [propertyName]: value });
     }
 
@@ -103,13 +116,16 @@ class Login extends Component {
   
     }
 
+    signOut() {
+        app.auth().signOut();
+    }
+
 
     render() {
 
         const { email, password, redirect } = this.state;
-
+        console.log(this.state)
         return (
-                <main className="wrapper">
                     <div className="login-container">
                         <h2 className="login__title">Login</h2>
                         <div className="login__methods">
@@ -141,9 +157,8 @@ class Login extends Component {
                         </form>
                         <div className='login__signup-link'>Don't have an account? Sign up <a href='/SignUp'>here.</a></div>
                     </div>
-                </main>
         )
     }
 }
 
-export default Login;
+export default withRouter(Login);

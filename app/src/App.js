@@ -160,6 +160,10 @@ render() {
         <BrowserRouter>
         <div>
         <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
+        <Route exact path={'/teams'} component={() => <Dashboard teams={teams} />}/>  
+        <Route exact path={'/login'} component={() => <Login />}/>  
+        <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
+        <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
         </div> 
     </BrowserRouter>  
             
