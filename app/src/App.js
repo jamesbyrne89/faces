@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './routes/Login';
 import Layout from './components/Layout';
 import Modal from './components/Modal';
-import ProfileCard from './components/ProfileCard';
+import Dashboard from './routes/Dashboard';
 import { app, base } from './models/Data';
 
 
@@ -113,21 +114,8 @@ class App extends Component {
                 content: null
         }
     }
-    this.checkAuthStatus = this.checkAuthStatus.bind(this);
 }
 
-checkAuthStatus() {
-
-    let user = app.auth().currentUser
-        if (user) {
-          console.log('Logged in')
-          this.setState({ authenticated: true });
-        } else {
-          // No user is signed in.
-          console.warn('Not logged in')
-          this.setState({ authenticated: false });
-        }
-}
 
 signOut() {
     this.setState({ authenticated: false });
@@ -155,14 +143,12 @@ modalHandler(openState, content) {
     });
 }
 
-componentWillMount() {
-    this.checkAuthStatus();
-    console.log('Checked auth status')
-    base.syncState('teams', {
-        context: this,
-        state: 'teams'
-    })
-}
+// componentDidMount() {
+//     base.syncState('teams', {
+//         context: this,
+//         state: 'teams'
+//     })
+// }
 
 render() {
     const { teams, locations, modal, authenticated } = this.state;
@@ -170,13 +156,16 @@ render() {
     const modalHandler = this.modalHandler.bind(this);
     const filterTeams = this.filterTeams.bind(this);
     const signOut = this.signOut.bind(this);
-    console.log(authenticated)
     return (
-            
-               authenticated ? <Layout teams={teams} signOut={signOut} locations={locations} /> : <Login />
+        <BrowserRouter>
+        <div>
+        <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
+        </div> 
+    </BrowserRouter>  
             
     );
 }
 }
+
 
 export default App;

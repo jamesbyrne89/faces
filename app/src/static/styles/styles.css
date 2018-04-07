@@ -308,6 +308,8 @@ body {
   padding: 2rem 2.5rem;
   position: -webkit-sticky;
   position: sticky;
+  top: 0;
+  width: 300px;
 }
 
 .header nav {

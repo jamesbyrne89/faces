@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Teams from '../routes/Teams';
+import Teams from '../components/Teams';
 import { app, base, facebookProvider, githubProvider } from '../models/Data';
 
 
@@ -15,21 +15,19 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false,
-            email: {
-                value: '',
-                valid: true
-                },
-            password: {
-                value: '',
-                valid: true
-                }
+            email: '',
+            pasword: ''
+        }
+        const errors = {
+            passwordIncorrect: 'Incorrect password, please try again',
+            passwordsDoNotMatch: 'Passwords do not match',
+            invalidEmail: 'That doesn\'t seem to be a valid email',
+            noEmailFound: 'No account was found with that email address'
         }
         this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
         this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
-        this.emailHandler = this.emailHandler.bind(this);
-        this.passwordHandler = this.passwordHandler.bind(this);
+        this.handleInput = this.handleInput.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
     }
 
@@ -41,7 +39,7 @@ class Login extends Component {
                     alert('Unable to sign in with Facebook');
                 }
                 else {
-                    this.setState({ redirect: true });
+                    // this.setState({ redirect: true });
                 }
             })
     }
@@ -54,7 +52,7 @@ class Login extends Component {
                     alert('Unable to sign in with Github');
                 }
                 else {
-                    this.setState({ redirect: true });
+                    // this.setState({ redirect: true });
                 }
             })
     }
@@ -64,6 +62,7 @@ class Login extends Component {
         e.preventDefault();
         app.auth().fetchProvidersForEmail(email.value)
             .then(providers => {
+                console.log(providers)
                 if (providers.length === 0) {
                     // Create user
                     alert('User not recognised');
@@ -83,11 +82,7 @@ class Login extends Component {
             })
             .then(user => {
                 if (user && user.email) {
-                    this.setState({
-                        redirect: true,
-                        email: { value: '', valid: true },
-                        password: { value: '', valid: true }
-                    });
+          
                     console.log('Successfully logged in')
                 }
             })
@@ -97,48 +92,17 @@ class Login extends Component {
             })
     }
 
-    emailHandler(e) {
-        let newState = {...this.state};
-        newState.email.value = e.target.value;
-        this.setState({ ...newState })
+    handleInput(propertyName, value) {
+        const byPropKey = (propertyName, value) => () => ({
+            [propertyName]: value,
+            });
+            this.setState({ [propertyName]: value });
     }
-
-    passwordHandler(e) {
-        let newState = {...this.state};
-        newState.password.value = e.target.value;
-        this.setState({ ...newState })
-    }    
 
     handleErrors(err) {
-        let newState = {...this.state};
-
-        if (err.code === 'auth/invalid-email') {
-            newState.email.valid = false;
-            this.setState({ ...newState });
-        }
-        else if (err.code !== 'auth/invalid-email') {
-            newState.email.valid = true;
-            this.setState({ ...newState });
-        }
-        if (err.code === 'auth/wrong-password') {
-            newState.password.valid = false;
-            this.setState({ ...newState });
-        }
-        else if (err.code !== 'auth/wrong-password') {
-            newState.password.valid = true;
-            this.setState({ ...newState });
-        }
+  
     }
 
-    componentWillMount() {
-        if (this.state.redirect) {
-            // {Router.push('/Teams')}
-        }
-    }
-
-    componentDidMount() {
-        this.setState({ redirect: false })
-    }
 
     render() {
 
@@ -168,11 +132,11 @@ class Login extends Component {
                         </div>
                         <form className="login__form" onSubmit={this.authenticateWithEmail}>
                             <label className="input-label">Email</label>
-                            <input className={email.valid ? 'login__email' : 'login__email invalid'} value={email.value} type="email" onChange={this.emailHandler} placeholder="Email" />
-                            <ErrorMessage input={'email'} error={!email.valid} message={'Please provide a valid email'} />
+                            <input className={email ? 'login__email' : 'login__email invalid'} type="email" onChange={e => this.handleInput('email', e.target.value)} placeholder="Email" />
+                            <ErrorMessage input={'email'} error={!email} message={'Please provide a valid email'} />
                             <label className="input-label">Password</label>
-                            <input className={password.valid ? 'login__password' : 'login__password invalid'} value={password.value} type="password" onChange={this.passwordHandler} placeholder="Password" />
-                            <ErrorMessage input={'password'} error={!password.valid} message={'Incorrect password'} />
+                            <input className={password ? 'login__password' : 'login__password invalid'} type="password" onChange={e => this.handleInput('password', e.target.value)} placeholder="Password" />
+                            <ErrorMessage input={'password'} error={!password} message={'Incorrect password'} />
                             <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
                         </form>
                         <div className='login__signup-link'>Don't have an account? Sign up <a href='/SignUp'>here.</a></div>
