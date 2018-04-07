@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import NewPhoto from '../NewPhoto';
-import TakePhoto from '../TakePhoto';
-import UploadPhoto from '../UploadPhoto';
+import NewPhoto from './NewPhoto';
+import TakePhoto from './TakePhoto';
+import UploadPhoto from './UploadPhoto';
 
 
 

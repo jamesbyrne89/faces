@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Login from './Login';
+import Login from './routes/Login';
 import Layout from './components/Layout';
 import Modal from './components/Modal';
 import ProfileCard from './components/ProfileCard';

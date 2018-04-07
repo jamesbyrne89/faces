@@ -26,7 +26,6 @@ class ResetPassword extends Component {
 
     }
 
-
     render() {
 
             const { email, valid } = this.state;

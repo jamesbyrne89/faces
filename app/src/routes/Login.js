@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Teams from './Teams';
-import { app, base, facebookProvider, githubProvider } from './models/Data';
+import Teams from '../routes/Teams';
+import { app, base, facebookProvider, githubProvider } from '../models/Data';
 
 
 
