@@ -3,7 +3,7 @@ import Teams from '../components/Teams';
 import { app, auth, base, facebookProvider, githubProvider } from '../models/Data';
 import { login } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
-import fbIcon from '../images/Icons';
+import { fbIcon } from '../images/Icons';
 
 
 
@@ -36,6 +36,7 @@ class Login extends Component {
         this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
         this.handleInput = this.handleInput.bind(this);
+    
     }
 
     authenticateWithFacebook() {
@@ -66,16 +67,13 @@ class Login extends Component {
 
     authenticateWithEmail(e) {
         const { email, password } = this.state;
-
         e.preventDefault();
-
         login(email, password)
         .then(() => console.log('Successfully signed in'))
         .catch((error) => {
             console.warn('Error messaging goes here', error)
             // this.setState(setErrorMsg('Invalid username/password.'))
-          })
-       
+          })      
     }
 
     handleInput(propertyName, value) {
@@ -85,14 +83,10 @@ class Login extends Component {
         this.setState({ [propertyName]: value });
     }
 
-
     render() {
+        const { from } = this.props.location.state || { from: { pathname: '/' } };
+        const { email, password, emailInvalid, passwordInvalid, redirect, authenticated } = this.state;
 
-        const { email, password, emailInvalid, passwordInvalid, redirect } = this.state;
-        if (redirect) {
-            return <Redirect to='/' />
-        }
-        else {
         return (
             <main className="wrapper">
                 <div className="login-container">
@@ -127,7 +121,6 @@ class Login extends Component {
                 </div>
             </main>
         )
-    }
     }
 }
 

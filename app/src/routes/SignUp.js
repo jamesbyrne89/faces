@@ -14,7 +14,6 @@ const SignUp = ({ history }) => {
 
 const ErrorMessage = props => {
     const { input, error, message } = props;
-    console.log(props)
     return <div className={`${input}-error` + (error ? ` show` : '')}>{message}</div>
 }
 

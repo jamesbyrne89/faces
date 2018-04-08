@@ -7,6 +7,7 @@ class LocationsDropdown extends Component {
         this.state = {
             visible: false
         }
+        this.locationList = this.getLocationsList.bind(this)
     }
 
     showHide() {
@@ -23,7 +24,7 @@ class LocationsDropdown extends Component {
 
 
     render() {
-       const locationList = this.getLocationsList.bind(this)
+       
     return (
         <li>
             <button className="btn location" onClick={this.showHide.bind(this)}><i className="fa fa-map-marker"></i> London

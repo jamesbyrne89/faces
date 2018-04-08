@@ -1,10 +1,16 @@
 @import './base/_reset';
 @import './base/_typography';
 @import './components/_login';
+@import './components/_spinner';
+@import './components/_error';
 body {
     background: #ebedf6;
     color: #81859a;
     font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
+}
+
+#root {
+    min-height: 100vh;
 }
 
 .app-container {
@@ -462,6 +468,7 @@ canvas {
 }
 
 /* MENUS */
+
 
 .menu-dropdown__wrapper {
     display: block;

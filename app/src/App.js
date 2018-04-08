@@ -2,49 +2,53 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Login from './routes/Login';
 import SignUp from './routes/SignUp';
-import Layout from './components/Layout';
+import NotFound from './routes/NotFound';
 import Modal from './components/Modal';
 import isAuthenticated from './components/IsAuthenticated';
 import Dashboard from './routes/Dashboard';
 import { app, auth, base } from './models/Data';
 import AuthUserContext from './components/AuthUserContext';
+import Home from './routes/Home';
+import Spinner from './components/Spinner';
+import Team from './routes/Team';
+import Profile from './routes/Profile';
 
 
 
-const ProtectedRoute = ({ component: Component, checkAuth, userAuthenticated, ...rest }) => {
-    return (
-        <Route {...rest}
-            render={props => {
-                return (
-                    userAuthenticated
-                        ? <Component {...props} {...rest} />
-                        : <Redirect to={{
-                            pathname: '/login',
-                            state: { checkAuth: this.checkAuth }
-                        }} />
-                )
-            }}
-        />
-    );
-}
+const ProtectedRoute = ({ component: Component, locations, userAuthenticated, ...rest }) => (
+    <Route {...rest}
+        render={props => (
+            userAuthenticated
+                ? <Component
+                    locations={locations}
+                    userAuthenticated={userAuthenticated}
+                    {...props}
+                    {...rest} />
+                : <Redirect to={{
+                    pathname: '/login',
+                    state: { from: props.location }
+                }} />
+        )
+        }
+    />
+);
 
-const PublicRoute = ({component: Component, userAuthenticated, ...rest}) => {
-    return (
-      <Route
+const PublicRoute = ({ component: Component, userAuthenticated, ...rest }) => (
+    <Route
         {...rest}
-        render={(props) => userAuthenticated === false
-          ? <Component {...props} />
-          : <Redirect to='/' />}
-      />
-    )
-  }
+        render={props =>
+            !userAuthenticated
+                ? <Component {...props} />
+                : <Redirect to='/dashboard' />}
+    />
+)
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             userAuthenticated: false,
-            loading: false,
+            loading: true,
             teams: [
                 {
                     name: "Digital",
@@ -159,7 +163,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.removeListener = auth.onAuthStateChanged((user) => {
+        this.removeListener = auth.onAuthStateChanged(user => {
             if (user) {
                 this.setState({
                     userAuthenticated: true,
@@ -173,6 +177,8 @@ class App extends Component {
             }
         })
     }
+
+
     componentWillUnmount() {
         this.removeListener()
     }
@@ -180,23 +186,28 @@ class App extends Component {
     render() {
         const { teams, locations, modal, userAuthenticated } = this.state;
 
-        // const allEmployees = teams.map(team => team.profiles)
-        const modalHandler = this.modalHandler.bind(this);
-        const filterTeams = this.filterTeams.bind(this);
-        const signOut = this.signOut.bind(this);
-        return (
-            <Router>
-                <div>
-
-                    <ProtectedRoute exact path='/' teams={teams}
-                    userAuthenticated={userAuthenticated}
-                        component={Dashboard} />
-                    <PublicRoute userAuthenticated={userAuthenticated} path='/login' component={Login} />
-                    {/* <ProtectedRoute userAuthenticated={userAuthenticated} exact path='/' component={() => <Dashboard />} /> */}
-
-                </div>
-            </Router >
-        );
+        return this.state.loading
+            ? <Spinner />
+            : (
+                <Router>
+                    <Fragment>
+                        <Switch>
+                            <ProtectedRoute exact path='/'
+                                {...this.state}
+                                component={Home} />
+                            <PublicRoute userAuthenticated={userAuthenticated} exact path='/login' component={Login} />
+                            <ProtectedRoute path='/dashboard'
+                                {...this.state}
+                                component={Dashboard} />
+                            <ProtectedRoute path='/profile'
+                                {...this.state}
+                                component={Profile} />    
+                            <Route component={NotFound} />
+                            {/* <ProtectedRoute userAuthenticated={userAuthenticated} exact path='/' component={() => <Dashboard />} /> */}
+                        </Switch>
+                    </Fragment>
+                </Router >
+            );
     }
 }
 

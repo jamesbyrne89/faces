@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import App from '../App';
-import Layout from './Layout';
+import React from 'react';
 import Header from './Header';
 
 

@@ -11,9 +11,9 @@ const Header = props => {
                     <li>View seating plan</li>
                     
                         <li>
-                            <Link to={'Teams'} teams={teams}>Teams</Link>
+                            <Link to='/teams' teams={teams}>Teams</Link>
                         </li>
-                    {/* { teams.map((team, i) => <li className="menu__subitem" key={i}>{team.name}</li>) } */}
+                    { teams.map((team, i) => <li className="menu__subitem" key={i}>{team.name}</li>) }
                 </ul>
             </nav>
         </header>

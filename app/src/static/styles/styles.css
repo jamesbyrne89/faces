@@ -161,12 +161,17 @@ input {
 
 .wrapper {
   width: 100%;
+  min-height: 100vh;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .login__title {
@@ -283,10 +288,191 @@ input.invalid {
   padding: 1em;
 }
 
+/* Editable */
+/* Probably shouldn't edit, but go crazy. */
+/* Sassery */
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 2em;
+}
+
+.spinner,
+.spinner div {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+.spinner div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.spinner:before,
+.spinner:after,
+.spinner div:before,
+.spinner div:after {
+  -webkit-animation-duration: 800ms;
+  animation-duration: 800ms;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  content: "";
+  background: #001386;
+  border-radius: 100%;
+  width: 0.5em;
+  height: 0.5em;
+  position: absolute;
+}
+
+.spinner:before,
+.spinner div:before {
+  -webkit-animation-name: orbBounceBefore;
+  animation-name: orbBounceBefore;
+  top: -0.25em;
+  left: -0.25em;
+}
+
+.spinner:after,
+.spinner div:after {
+  -webkit-animation-name: orbBounceAfter;
+  animation-name: orbBounceAfter;
+  top: -0.25em;
+  right: -0.25em;
+}
+
+.spinner-a {
+  -webkit-transform: rotate(60deg) translateY(0);
+  transform: rotate(60deg) translateY(0);
+}
+
+.spinner-b {
+  -webkit-transform: rotate(120deg) translateY(0);
+  transform: rotate(120deg) translateY(0);
+}
+
+@-webkit-keyframes orbBounceBefore {
+  62.5% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  81.25% {
+    -webkit-animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes orbBounceBefore {
+  62.5% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  81.25% {
+    -webkit-animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes orbBounceAfter {
+  62.5% {
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  81.25% {
+    -webkit-animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes orbBounceAfter {
+  62.5% {
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  81.25% {
+    -webkit-animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+.spinner-a:before {
+  -webkit-animation-delay: 133.33333ms;
+  animation-delay: 133.33333ms;
+}
+
+.spinner-b:before {
+  -webkit-animation-delay: 266.66667ms;
+  animation-delay: 266.66667ms;
+}
+
+.spinner:after {
+  -webkit-animation-delay: 400ms;
+  animation-delay: 400ms;
+}
+
+.spinner-a:after {
+  -webkit-animation-delay: 533.33333ms;
+  animation-delay: 533.33333ms;
+}
+
+.spinner-b:after {
+  -webkit-animation-delay: 666.66667ms;
+  animation-delay: 666.66667ms;
+}
+
+.not-found-error {
+  font-size: 2.5rem;
+}
+
+.error-container {
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
 body {
   background: #ebedf6;
   color: #81859a;
   font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 .app-container {

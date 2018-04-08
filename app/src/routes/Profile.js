@@ -1,35 +1,25 @@
-import React, { Component } from 'react';
-import './styles.css';
+import React, { Fragment } from 'react';
+import Header from '../components/Header';
+import LocationsDropdown from '../components/LocationsDropdown';
+import SignOutButton from '../components/SignOutButton';
 
-const Profile = () => {
-    render() {
-        return ( < div className = "app-container" >
-            <
-            header className = "header" >
-            <
-            h1 className = "App-title" > Faces App < /h1> <
-            nav >
-            <
-            ul >
-            <
-            li > View seating plan < /li> <
-            li > Teams < /li> <
-            li > All Team Members < /li> <
-            li > < /li> <
-            li > < /li> < /
-            ul > <
-            /nav> < /
-            header >
-            <
-            main className = "app-content" >
-            <
-            header className = "controls-bar" >
-            <
-            /header> <
-            /main> < /
-            div >
-        );
-    }
-}
 
-export default App;
+
+const Profile = (props) => (
+    <Fragment>
+        <Header teams={props.teams} />
+        <main className="app-content">
+            <header className="controls-bar">
+                <ul className="controls-bar__controls">
+                    <li>Warehouse Fashions</li>
+                    <LocationsDropdown locations={props.locations} />
+                    <li><SignOutButton /></li>
+                </ul>
+            </header>
+            {/* {<Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />} */}
+            {/* <Teams /> */}
+        </main>
+    </Fragment>
+);
+
+export default Profile;

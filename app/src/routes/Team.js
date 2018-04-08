@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ProfileCard from '../components/ProfileCard';
-import '../styles.css';
 
 const Team = props => {
     console.log(props)
