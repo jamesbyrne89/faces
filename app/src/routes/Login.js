@@ -9,8 +9,17 @@ import { FacebookIcon, TwitterIcon, GithubIcon } from '../images/Icons';
 
 
 const ErrorMessage = props => {
-    const { input, error, message } = props;
-    console.log(error)
+    const { input, error } = props;
+    const errors = {
+        email: {
+            invalid: 'That doesn\'t seem to be a valid email',
+            notFound: 'No account was found with that email address'
+        },
+        password: {
+            incorrect: 'Incorrect password, please try again'
+        }
+    }
+    const message = errors[input].invalid;
     return (
         <div className={`${input}-error` + (error ? ` show` : '')}>{message}</div>
     )
@@ -22,22 +31,20 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            emailInvalid: false,
-            passwordInvalid: false,
+            emailInvalid: null,
+            passwordInvalid: null,
             authenticated: false,
-            redirect: false
+            focused: {
+                email: false,
+                password: false
+            }
         }
-        const errors = {
-            passwordIncorrect: 'Incorrect password, please try again',
-            passwordsDoNotMatch: 'Passwords do not match',
-            invalidEmail: 'That doesn\'t seem to be a valid email',
-            noEmailFound: 'No account was found with that email address'
-        }
+
         this.authenticateWithFacebook = this.authenticateWithFacebook.bind(this);
         this.authenticateWithGithub = this.authenticateWithGithub.bind(this);
         this.authenticateWithEmail = this.authenticateWithEmail.bind(this);
         this.handleInput = this.handleInput.bind(this);
-    
+
     }
 
     authenticateWithFacebook() {
@@ -70,11 +77,13 @@ class Login extends Component {
         const { email, password } = this.state;
         e.preventDefault();
         login(email, password)
-        .then(() => console.log('Successfully signed in'))
-        .catch((error) => {
-            console.warn('Error messaging goes here', error)
-            // this.setState(setErrorMsg('Invalid username/password.'))
-          })      
+            .then(() => console.log('Successfully signed in'))
+            .catch((error) => {
+                console.warn('Error messaging goes here', error)
+                error.code === "auth/invalid-email" && this.setState({ emailInvalid: true });
+                error.code === "auth/invalid-password" && this.setState({ passwordInvalid: true });
+            }
+            )
     }
 
     handleInput(propertyName, value) {
@@ -82,6 +91,27 @@ class Login extends Component {
             [propertyName]: value,
         });
         this.setState({ [propertyName]: value });
+        if (propertyName === 'email') {
+            console.log('handle change')
+            this.state.email.focused &&
+            this.showErrors(value)
+        }
+    }
+
+    handleBlur(input) {
+        this.setState({ focused: { ...this.state.focused, [input]: true } });
+        input === 'email' && this.showErrors(this.state[input])
+    }
+
+    validateEmail(email) {
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return regex.test(String(email).toLowerCase());
+    }
+
+    showErrors(value) {
+        const validity = this.validateEmail(value);
+        console.log(validity)
+        this.setState({ emailInvalid: !validity });
     }
 
     render() {
@@ -105,12 +135,31 @@ class Login extends Component {
                     </div>
                     <form className="login__form" onSubmit={this.authenticateWithEmail}>
                         <label className="input-label">Email</label>
-                        <input className={email ? 'login__email' : 'login__email invalid'} type="email" onChange={e => this.handleInput('email', e.target.value)} placeholder="Email" autoComplete={'off'}/>
-                        <ErrorMessage input={'email'} error={emailInvalid} message={'Please provide a valid email'} />
+                        <input className={!emailInvalid ? 'login__email' : 'login__email invalid'}
+                            type="email"
+                            onChange={e => this.handleInput('email', e.target.value)}
+                            onBlur={e => this.handleBlur(e.target.type)}
+                            placeholder="Email"
+                            autoComplete={'off'}
+                        />
+                        <ErrorMessage
+                            input={'email'}
+                            error={emailInvalid}
+                        />
                         <label className="input-label">Password</label>
-                        <input className={password ? 'login__password' : 'login__password invalid'} type="password" onChange={e => this.handleInput('password', e.target.value)} placeholder="Password" autoComplete={'off'}/>
-                        <ErrorMessage input={'password'} error={passwordInvalid} message={'Incorrect password'} />
-                        <button className="btn btn-submit" onClick={this.authenticateWithEmail}>Login</button>
+                        <input className={password ? 'login__password' : 'login__password invalid'}
+                            type="password"
+                            onChange={e => this.handleInput('password', e.target.value)}
+                            onBlur={e => this.handleBlur(e.target.type)}
+                            placeholder="Password"
+                            autoComplete={'off'} />
+                        <ErrorMessage
+                            input={'password'}
+                            error={passwordInvalid}
+                            message={'Incorrect password'}
+                        />
+                        <button className="btn btn-submit"
+                            onClick={this.authenticateWithEmail}>Login</button>
 
                     </form>
                     <div className='login__signup-link'>Don't have an account? Sign up <a href='/signup'>here.</a></div>
