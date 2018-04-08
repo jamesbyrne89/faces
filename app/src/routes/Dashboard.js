@@ -5,9 +5,11 @@ import ProfileCard from '../components/ProfileCard';
 import LocationsDropdown from '../components/LocationsDropdown';
 import Header from '../components/Header';
 import Teams from '../components/Teams';
-
+import SignOutButton from '../components/SignOutButton';
+import isAuthenticated from '../components/IsAuthenticated';
 
 const Dashboard = (props) => {
+    console.log(props)
     return (
         <div>
                 <Header teams={props.teams} />
@@ -16,14 +18,17 @@ const Dashboard = (props) => {
                     <ul className="controls-bar__controls">
                         <li>Warehouse Fashions</li>
                         {/* <LocationsDropdown locations={props.locations} /> */}
-                        <li><button className="btn">Sign Out</button></li>
+                        <li><SignOutButton /></li>
                     </ul>
                 </header>
                 {/* {<Modal open={this.state.modal.open} content={this.state.modal.content} handler={modalHandler} />} */}
-                <Teams />
+                {/* <Teams /> */}
             </main>
             </div>
     );
 }
 
-export default Dashboard;
+const authStatus = (authUser) => !!authUser;
+
+
+export default isAuthenticated(Dashboard);

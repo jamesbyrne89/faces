@@ -1,57 +1,54 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Login from './routes/Login';
+import SignUp from './routes/SignUp';
 import Layout from './components/Layout';
 import Modal from './components/Modal';
+import isAuthenticated from './components/IsAuthenticated';
 import Dashboard from './routes/Dashboard';
-import { app, base } from './models/Data';
+import { app, auth, base } from './models/Data';
+import AuthUserContext from './components/AuthUserContext';
 
+
+
+const ProtectedRoute = ({ component: Component, checkAuth, userAuthenticated, ...rest }) => {
+    return (
+        <Route {...rest}
+            render={props => {
+                return (
+                    userAuthenticated
+                        ? <Component {...props} {...rest} />
+                        : <Redirect to={{
+                            pathname: '/login',
+                            state: { checkAuth: this.checkAuth }
+                        }} />
+                )
+            }}
+        />
+    );
+}
+
+const PublicRoute = ({component: Component, userAuthenticated, ...rest}) => {
+    return (
+      <Route
+        {...rest}
+        render={(props) => userAuthenticated === false
+          ? <Component {...props} />
+          : <Redirect to='/' />}
+      />
+    )
+  }
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            authenticated: false,
-            uid: '',
-            admin: false,
+            userAuthenticated: false,
+            loading: false,
             teams: [
-                { name: "Digital",
+                {
+                    name: "Digital",
                     profiles: [{
-                        name: "James Byrne",
-                        title: "Junior Web Developer",
-                        email: "james.byrne@warehouse.co.uk",
-                        team: "Digital",
-                        photo: "http://via.placeholder.com/250x250"
-                    },
-                    {
-                        name: "James Byrne",
-                        title: "Junior Web Developer",
-                        email: "james.byrne@warehouse.co.uk",
-                        team: "Digital",
-                        photo: "http://via.placeholder.com/250x250"
-                    },
-                    {
-                        name: "James Byrne",
-                        title: "Junior Web Developer",
-                        email: "james.byrne@warehouse.co.uk",
-                        team: "Digital",
-                        photo: "http://via.placeholder.com/250x250"
-                    },
-                    {
-                        name: "James Byrne",
-                        title: "Junior Web Developer",
-                        email: "james.byrne@warehouse.co.uk",
-                        team: "Digital",
-                        photo: "http://via.placeholder.com/250x250"
-                    },
-                    {
-                        name: "James Byrne",
-                        title: "Junior Web Developer",
-                        email: "james.byrne@warehouse.co.uk",
-                        team: "Digital",
-                        photo: "http://via.placeholder.com/250x250"
-                    },
-                    {
                         name: "James Byrne",
                         title: "Junior Web Developer",
                         email: "james.byrne@warehouse.co.uk",
@@ -99,76 +96,108 @@ class App extends Component {
                     profiles: []
                 }
             ],
-        locations: {
-            list: [
-                "London",
-                "Stanton Harcourt",
-                "International",
-                "International 2",
-                "International 3"
+            locations: {
+                list: [
+                    "London",
+                    "Stanton Harcourt",
+                    "International",
+                    "International 2",
+                    "International 3"
                 ],
                 current: "London"
-        },
+            },
             modal: {
-            open: false,
+                open: false,
                 content: null
+            }
         }
     }
-}
 
 
-signOut() {
-    this.setState({ authenticated: false });
-}
+    signOut() {
+        this.setState({ userAuthenticated: false });
+        auth.signOut();
+    }
 
-filterTeams(name) {
-    let { teams } = this.state;
-    let teamName = name.toLowerCase();
-    return teams.filter(team => (team.name).toLowerCase() === teamName);
-}
 
-getAllEmployees() {
-    let { teams } = this.state;
-  return teams.reduce((teams, team) => {
-      return teams.concat(...team.profiles)
-    }, []) 
-}
+    filterTeams(name) {
+        let { teams } = this.state;
+        let teamName = name.toLowerCase();
+        return teams.filter(team => (team.name).toLowerCase() === teamName);
+    }
 
-modalHandler(openState, content) {
-    this.setState({
-        modal: {
-            open: openState,
-            content: content
-        }
-    });
-}
+    getAllEmployees() {
+        let { teams } = this.state;
+        return teams.reduce((teams, team) => {
+            return teams.concat(...team.profiles)
+        }, [])
+    }
 
-// componentDidMount() {
-//     base.syncState('teams', {
-//         context: this,
-//         state: 'teams'
-//     })
-// }
+    modalHandler(openState, content) {
+        this.setState({
+            modal: {
+                open: openState,
+                content: content
+            }
+        });
+    }
 
-render() {
-    const { teams, locations, modal, authenticated } = this.state;
-   // const allEmployees = teams.map(team => team.profiles)
-    const modalHandler = this.modalHandler.bind(this);
-    const filterTeams = this.filterTeams.bind(this);
-    const signOut = this.signOut.bind(this);
-    return (
-        <BrowserRouter>
-        <div>
-        <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
-        <Route exact path={'/teams'} component={() => <Dashboard teams={teams} />}/>  
-        <Route exact path={'/login'} component={() => <Login />}/>  
-        <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
-        <Route exact path={'/'} component={() => <Dashboard teams={teams} />}/>  
-        </div> 
-    </BrowserRouter>  
-            
-    );
-}
+    checkAuth() {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({
+                    userAuthenticated: true,
+                    loading: false
+                })
+            } else {
+                this.setState({
+                    userAuthenticated: false,
+                    loading: false
+                });
+            }
+        })
+    }
+
+    componentDidMount() {
+        this.removeListener = auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({
+                    userAuthenticated: true,
+                    loading: false,
+                })
+            } else {
+                this.setState({
+                    userAuthenticated: false,
+                    loading: false
+                })
+            }
+        })
+    }
+    componentWillUnmount() {
+        this.removeListener()
+    }
+
+    render() {
+        const { teams, locations, modal, userAuthenticated } = this.state;
+
+        // const allEmployees = teams.map(team => team.profiles)
+        const modalHandler = this.modalHandler.bind(this);
+        const filterTeams = this.filterTeams.bind(this);
+        const signOut = this.signOut.bind(this);
+        return (
+            <Router>
+                <div>
+
+                    <ProtectedRoute exact path='/' teams={teams}
+                    userAuthenticated={userAuthenticated}
+                        component={Dashboard} />
+                    <PublicRoute userAuthenticated={userAuthenticated} path='/login' component={Login} />
+                    {/* <ProtectedRoute userAuthenticated={userAuthenticated} exact path='/' component={() => <Dashboard />} /> */}
+
+                </div>
+            </Router >
+        );
+    }
 }
 
 
