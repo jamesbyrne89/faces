@@ -1,5 +1,4 @@
 .login-container {
-    margin-top: 200px;
     text-align: center;
     background: #fff;
     border-radius: 8px;
@@ -18,8 +17,8 @@
     -ms-flex-pack: center;
     justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .login__title {
@@ -31,7 +30,7 @@
 }
 
 .login__methods {
-    padding: 2em;
+    padding: 1em 2em;
 }
 
 .btn.login-method {
@@ -72,7 +71,6 @@
 }
 
 .btn.btn-submit {
-    margin-top: 2rem;
     float: right;
     background: #001386;
     color: #fff;
@@ -84,9 +82,9 @@ input {
     display: block;
     border: 1px solid #dcdee6;
     border-radius: 3px;
-    padding: 3px 3px 0 13px;
+    padding: 3px 3px 2px 13px;
     height: 2rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
 }
 
 input:focus {
@@ -104,10 +102,6 @@ input.invalid {
     font-size: 1rem;
 }
 
-.input-label:first-of-type {
-    margin-top: 0;
-}
-
 .login__email,
 .login__password {
     margin-top: 0.75rem;
@@ -115,7 +109,7 @@ input.invalid {
 }
 
 .login__form {
-    padding: 0 2em 2em;
+    padding: 0 2em 1em;
     overflow: hidden;
 }
 

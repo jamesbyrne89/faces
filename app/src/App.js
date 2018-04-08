@@ -15,23 +15,29 @@ import Profile from './routes/Profile';
 
 
 
-const ProtectedRoute = ({ component: Component, locations, userAuthenticated, ...rest }) => (
-    <Route {...rest}
-        render={props => (
-            userAuthenticated
-                ? <Component
-                    locations={locations}
-                    userAuthenticated={userAuthenticated}
-                    {...props}
-                    {...rest} />
-                : <Redirect to={{
-                    pathname: '/login',
-                    state: { from: props.location }
-                }} />
-        )
-        }
-    />
-);
+const ProtectedRoute = ({ component: Component, locations, userAuthenticated, ...rest }) => {
+    console.log(...rest)
+    return (
+        <Route {...rest}
+            render={props => {
+                console.log(props)
+                return (
+                    userAuthenticated
+                        ? <Component
+                            locations={locations}
+                            userAuthenticated={userAuthenticated}
+                            {...props}
+                            {...rest} />
+                        : <Redirect to={{
+                            pathname: '/login',
+                            state: { from: props.location }
+                        }} />
+                )
+            }
+            }
+        />
+    );
+}
 
 const PublicRoute = ({ component: Component, userAuthenticated, ...rest }) => (
     <Route
@@ -109,10 +115,6 @@ class App extends Component {
                     "International 3"
                 ],
                 current: "London"
-            },
-            modal: {
-                open: false,
-                content: null
             }
         }
     }
@@ -137,14 +139,7 @@ class App extends Component {
         }, [])
     }
 
-    modalHandler(openState, content) {
-        this.setState({
-            modal: {
-                open: openState,
-                content: content
-            }
-        });
-    }
+
 
     checkAuth() {
         auth.onAuthStateChanged((user) => {
@@ -164,10 +159,11 @@ class App extends Component {
 
     componentDidMount() {
         this.removeListener = auth.onAuthStateChanged(user => {
+            console.log()
             if (user) {
                 this.setState({
                     userAuthenticated: true,
-                    loading: false,
+                    loading: false
                 })
             } else {
                 this.setState({
@@ -198,10 +194,14 @@ class App extends Component {
                             <PublicRoute userAuthenticated={userAuthenticated} exact path='/login' component={Login} />
                             <ProtectedRoute path='/dashboard'
                                 {...this.state}
+                                modalHandler={this.modalHandler}
                                 component={Dashboard} />
                             <ProtectedRoute path='/profile'
                                 {...this.state}
-                                component={Profile} />    
+                                component={Profile} />
+                            <ProtectedRoute path='/team/:name'
+                                {...this.state}
+                                component={Team} />
                             <Route component={NotFound} />
                             {/* <ProtectedRoute userAuthenticated={userAuthenticated} exact path='/' component={() => <Dashboard />} /> */}
                         </Switch>

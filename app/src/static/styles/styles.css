@@ -151,7 +151,6 @@ input {
 }
 
 .login-container {
-  margin-top: 200px;
   text-align: center;
   background: #fff;
   border-radius: 8px;
@@ -183,7 +182,7 @@ input {
 }
 
 .login__methods {
-  padding: 2em;
+  padding: 1em 2em;
 }
 
 .btn.login-method {
@@ -224,7 +223,6 @@ input {
 }
 
 .btn.btn-submit {
-  margin-top: 2rem;
   float: right;
   background: #001386;
   color: #fff;
@@ -236,9 +234,9 @@ input {
   display: block;
   border: 1px solid #dcdee6;
   border-radius: 3px;
-  padding: 3px 3px 0 13px;
+  padding: 3px 3px 2px 13px;
   height: 2rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 input:focus {
@@ -256,10 +254,6 @@ input.invalid {
   font-size: 1rem;
 }
 
-.input-label:first-of-type {
-  margin-top: 0;
-}
-
 .login__email,
 .login__password {
   margin-top: 0.75rem;
@@ -267,7 +261,7 @@ input.invalid {
 }
 
 .login__form {
-  padding: 0 2em 2em;
+  padding: 0 2em 1em;
   overflow: hidden;
 }
 
@@ -359,8 +353,8 @@ input.invalid {
   62.5% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
-    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
   }
   81.25% {
     -webkit-animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
@@ -378,8 +372,8 @@ input.invalid {
   62.5% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
-    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
   }
   81.25% {
     -webkit-animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
@@ -395,8 +389,8 @@ input.invalid {
 
 @-webkit-keyframes orbBounceAfter {
   62.5% {
-    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
@@ -414,8 +408,8 @@ input.invalid {
 
 @keyframes orbBounceAfter {
   62.5% {
-    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
