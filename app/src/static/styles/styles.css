@@ -463,28 +463,28 @@ body {
   background: #ebedf6;
   color: #81859a;
   font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
+  border-bottom: solid 6px #001386;
 }
 
 #root {
-  min-height: 100vh;
+  min-height: calc(100vh - 6px);
 }
 
 .app-container {
   display: grid;
   grid-template-columns: 300px auto;
   letter-spacing: -0.025em;
-  min-height: 100vh;
 }
 
 .app-container.modal-opened {
   overflow: hidden;
-  height: 100vh;
+  height: calc(100vh - 6px);
 }
 
 .header {
   background: #fff;
   color: #001386;
-  min-height: 100vh;
+  min-height: calc(100vh - 6px);
   padding: 2rem 2.5rem;
   position: -webkit-sticky;
   position: sticky;

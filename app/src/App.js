@@ -4,13 +4,12 @@ import Login from './routes/Login';
 import SignUp from './routes/SignUp';
 import NotFound from './routes/NotFound';
 import Modal from './components/Modal';
-import isAuthenticated from './components/IsAuthenticated';
 import Dashboard from './routes/Dashboard';
 import { app, auth, base } from './models/Data';
-import AuthUserContext from './components/AuthUserContext';
 import Home from './routes/Home';
 import Spinner from './components/Spinner';
 import Team from './routes/Team';
+import Teams from './components/Teams';
 import Profile from './routes/Profile';
 
 
@@ -159,7 +158,6 @@ class App extends Component {
 
     componentDidMount() {
         this.removeListener = auth.onAuthStateChanged(user => {
-            console.log()
             if (user) {
                 this.setState({
                     userAuthenticated: true,
@@ -200,9 +198,9 @@ class App extends Component {
                             <ProtectedRoute path='/profile'
                                 {...this.state}
                                 component={Profile} />
-                            <ProtectedRoute path='/team/'
+                            <ProtectedRoute path={`/teams/${this.props.params}`}
                                 {...this.state}
-                                component={Team} />
+                                component={Teams} />
                             <Route component={NotFound} />
                             {/* <ProtectedRoute userAuthenticated={userAuthenticated} exact path='/' component={() => <Dashboard />} /> */}
                         </Switch>
