@@ -192,6 +192,7 @@ class App extends Component {
                                 {...this.state}
                                 component={Home} />
                             <PublicRoute userAuthenticated={userAuthenticated} exact path='/login' component={Login} />
+                            <PublicRoute userAuthenticated={userAuthenticated} exact path='/signup' component={SignUp} />
                             <ProtectedRoute path='/dashboard'
                                 {...this.state}
                                 modalHandler={this.modalHandler}
@@ -199,7 +200,7 @@ class App extends Component {
                             <ProtectedRoute path='/profile'
                                 {...this.state}
                                 component={Profile} />
-                            <ProtectedRoute path='/team/:name'
+                            <ProtectedRoute path='/team/'
                                 {...this.state}
                                 component={Team} />
                             <Route component={NotFound} />

@@ -162,7 +162,7 @@ class Login extends Component {
                             onClick={this.authenticateWithEmail}>Login</button>
 
                     </form>
-                    <div className='login__signup-link'>Don't have an account? Sign up <a href='/signup'>here.</a></div>
+                    <div className='login__signup-link'>Don't have an account? <Link to='/signup'>Sign up.</Link></div>
                 </div>
             </main>
         )
