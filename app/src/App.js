@@ -19,14 +19,17 @@ const ProtectedRoute = ({ component: Component, locations, userAuthenticated, ..
     return (
         <Route {...rest}
             render={props => {
-                console.log(props)
+                console.log(...rest)
                 return (
                     userAuthenticated
-                        ? <Component
+                        ? <Fragment>
+                            <Modal {...rest} />
+                            <Component
                             locations={locations}
                             userAuthenticated={userAuthenticated}
                             {...props}
                             {...rest} />
+                            </Fragment>
                         : <Redirect to={{
                             pathname: '/login',
                             state: { from: props.location }
@@ -54,6 +57,7 @@ class App extends Component {
         this.state = {
             userAuthenticated: false,
             loading: true,
+            modalIsOpen: false,
             teams: [
                 {
                     name: "Digital",
@@ -172,14 +176,21 @@ class App extends Component {
         })
     }
 
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+    }
 
     componentWillUnmount() {
         this.removeListener()
     }
 
     render() {
-        const { teams, locations, modal, userAuthenticated } = this.state;
-
+        const { teams, locations, modalIsOpen, userAuthenticated } = this.state;
+        console.log(...this.state)
         return this.state.loading
             ? <Spinner />
             : (
@@ -187,13 +198,11 @@ class App extends Component {
                     <Fragment>
                         <Switch>
                             <ProtectedRoute exact path='/'
-                                {...this.state}
                                 component={Home} />
                             <PublicRoute userAuthenticated={userAuthenticated} exact path='/login' component={Login} />
                             <PublicRoute userAuthenticated={userAuthenticated} exact path='/signup' component={SignUp} />
                             <ProtectedRoute path='/dashboard'
                                 {...this.state}
-                                modalHandler={this.modalHandler}
                                 component={Dashboard} />
                             <ProtectedRoute path='/profile'
                                 {...this.state}

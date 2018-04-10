@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import Modal from '../components/Modal';
 import ProfileCard from '../components/ProfileCard';
 import LocationsDropdown from '../components/LocationsDropdown';
 import Header from '../components/Header';
@@ -21,8 +20,8 @@ const Dashboard = (props) => {
                         <li><SignOutButton /></li>
                     </ul>
                 </header>
-                {<Modal handler={modalHandler} />}
-                 <Teams teams={teams} />
+                
+                 <Teams modalHandler={modalHandler} teams={teams} />
             </main>
             </div>
     );

@@ -1,20 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import TeamCard from './TeamCard';
 import AddTeamButton from './AddTeamButton';
 
 
 
-const Teams = props => {
-    console.log(props)
+class Teams extends Component {
+    constructor(props) {
+        super(props)
+        this.createTeam = this.createTeam.bind(this);
+    }
+
+    createTeam() {
+        this.props.modalHandler();
+    }
+render() {
     return (
         <div>
             <div className="actions-bar">
-                <AddTeamButton />
+                <AddTeamButton onClick={this.props.modalHandler}/>
             </div>
             <ul className="app-content">
-                {props.teams.map((team, i) => <li key={i}>
+                {this.props.teams.map((team, i) => <li key={i}>
                                                 <TeamCard
-                                                    modalHandler={props.modalHandler}
+                                                    modalHandler={this.props.modalHandler}
                                                     team={team.name}
                                                     members={team.profiles}
                                                 /></li>)}
@@ -22,6 +30,7 @@ const Teams = props => {
         </div>
     
     );
+}
 }
 
 export default Teams;
