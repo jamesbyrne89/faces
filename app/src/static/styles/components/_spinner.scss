@@ -3,8 +3,8 @@
 $spinner-radius: .5em;
 /* Probably shouldn't edit, but go crazy. */
 
-$iteration-duration: 300ms;
-$cycle-duration: 800ms;
+$iteration-duration: 400ms;
+$cycle-duration: 600ms;
 $spinner-width: $spinner-radius * 4;
 /* Sassery */
 
@@ -15,6 +15,8 @@ $spinner-width: $spinner-radius * 4;
     -webkit-transform: translate(-50%, -50%) rotate(90deg);
     transform: translate(-50%, -50%) rotate(90deg);
     width: $spinner-width;
+    -webkit-animation: rotate 2.4s linear infinite;
+    animation: rotate 2.4s linear infinite;
 }
 
 .spinner,
@@ -83,8 +85,8 @@ $halfTime: 100% - percentage(($iteration-duration*.5)/$cycle-duration);
         animation-timing-function: ease-in-out;
     }
     #{$halfTime} {
-        -webkit-animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
-        animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
         -webkit-transform: translateX(-100%);
         transform: translateX(-100%);
     }
@@ -102,8 +104,8 @@ $halfTime: 100% - percentage(($iteration-duration*.5)/$cycle-duration);
         animation-timing-function: ease-in-out;
     }
     #{$halfTime} {
-        -webkit-animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
-        animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
         -webkit-transform: translateX(-100%);
         transform: translateX(-100%);
     }
@@ -121,8 +123,8 @@ $halfTime: 100% - percentage(($iteration-duration*.5)/$cycle-duration);
         transform: translateX(0);
     }
     #{$halfTime} {
-        -webkit-animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
-        animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
         -webkit-transform: translateX(100%);
         transform: translateX(100%);
     }
@@ -140,8 +142,8 @@ $halfTime: 100% - percentage(($iteration-duration*.5)/$cycle-duration);
         transform: translateX(0);
     }
     #{$halfTime} {
-        -webkit-animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
-        animation-timing-function: cubic-bezier(0, 1.11, .7, 1.43);
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
         -webkit-transform: translateX(100%);
         transform: translateX(100%);
     }
@@ -174,4 +176,30 @@ $halfTime: 100% - percentage(($iteration-duration*.5)/$cycle-duration);
 .spinner-b:after {
     -webkit-animation-delay: $delay-unit * 5;
     animation-delay: $delay-unit * 5;
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    100% {
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg);
+        transform: rotate(450deg);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    100% {
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg);
+        transform: rotate(450deg);
+    }
 }

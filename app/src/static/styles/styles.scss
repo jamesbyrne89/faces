@@ -3,6 +3,7 @@
 @import './components/_login';
 @import './components/_spinner';
 @import './components/_error';
+@import './components/_buttons';
 body {
     background: #ebedf6;
     color: #81859a;
@@ -114,72 +115,6 @@ body {
     width: 1em;
     vertical-align: sub;
     overflow: hidden;
-}
-
-/* Buttons */
-
-.btn {
-    background: transparent;
-    border: 0;
-    margin-top: 1.25rem;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
-    border-radius: 4px;
-    -webkit-transition: all .15s ease;
-    transition: all .15s ease;
-}
-
-.btn svg {
-    margin-right: 1em;
-}
-
-.btn svg path {
-    fill: #fff;
-}
-
-.btn-option {
-    background: #001386;
-    padding: 0.675rem 1rem 0.5rem;
-    color: #fff;
-    border-radius: 4px;
-    display: block;
-    min-width: 135px;
-    text-align: left;
-    -webkit-transition: all .15s ease;
-    transition: all .15s ease;
-}
-
-.btn-option:hover {
-    -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 3px 10px rgba(0, 0, 0, .5);
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 3px 10px rgba(0, 0, 0, .5);
-    -webkit-transform: translateY(-1px);
-    transform: translateY(-1px);
-    background: #4841cc;
-}
-
-.btn-cancel {
-    background: #AD2E49;
-    display: block;
-    color: #fff;
-    padding: 0.675rem 1rem 0.5rem;
-    border-radius: 4px;
-    min-width: 135px;
-    text-align: left;
-}
-
-.btn-navigation {
-    color: #4DCDFD;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.btn.btn-navigation i {
-    margin: 0 0 0 10px;
-}
-
-.btn i {
-    float: right;
 }
 
 .logo {
