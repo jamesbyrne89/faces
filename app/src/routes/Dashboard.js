@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import ProfileCard from '../components/ProfileCard';
+import React from 'react';
 import LocationsDropdown from '../components/LocationsDropdown';
 import Header from '../components/Header';
 import Teams from '../components/Teams';

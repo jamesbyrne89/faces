@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 
 
 class TakePhoto extends Component {
-    constructor(props) {
-        super(props);
-                };
-
+ 
     render() {
         const props = this.props;
         return (

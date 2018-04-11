@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, {  Component } from 'react';
 import TeamCard from './TeamCard';
 import AddTeamButton from './AddTeamButton';
 

@@ -5,10 +5,9 @@ import SignUp from './routes/SignUp';
 import NotFound from './routes/NotFound';
 import Modal from './components/Modal';
 import Dashboard from './routes/Dashboard';
-import { app, auth, base } from './models/Data';
+import { auth } from './models/Data';
 import Home from './routes/Home';
 import Spinner from './components/Spinner';
-import Team from './routes/Team';
 import Teams from './components/Teams';
 import Profile from './routes/Profile';
 

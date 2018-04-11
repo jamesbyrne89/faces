@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProfileCard from '../components/ProfileCard';
 
 const Team = props => {
     console.log(props)
-    const { filterTeams, team, match } = props;
+    const { match } = props;
     const teamMembers = (props.filterTeams(match.params.name))[0].profiles;
     console.log(teamMembers)
         return (

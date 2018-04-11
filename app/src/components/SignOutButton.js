@@ -1,6 +1,4 @@
 import React from 'react';
-import { app, auth } from '../models/Data';
-import AuthUserContext from './AuthUserContext';
 import { logout } from '../helpers/auth';
 
 const SignOutButton = () => {

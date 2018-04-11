@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Teams from '../components/Teams';
-import { app, auth, base, facebookProvider, githubProvider } from '../models/Data';
+import { auth, facebookProvider, githubProvider } from '../models/Data';
 import { login } from '../helpers/auth';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FacebookIcon, TwitterIcon, GithubIcon } from '../images/Icons';
 
 
@@ -68,7 +67,7 @@ class Login extends Component {
                     alert('Unable to sign in with Github');
                 }
                 else {
-                    // this.setState({ redirect: true });
+                   
                 }
             })
     }
@@ -115,7 +114,7 @@ class Login extends Component {
     }
 
     render() {
-        const { email, password, emailInvalid, passwordInvalid, redirect, authenticated } = this.state;
+        const { password, emailInvalid, passwordInvalid } = this.state;
 
         return (
             <main className="wrapper">

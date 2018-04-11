@@ -10,8 +10,12 @@ const ModalContext = React.createContext();
 class Modal extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
+        this.state = {
+            loading: true
+        }
     }
+
+    
 
 
     renderContent() {
