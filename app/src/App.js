@@ -10,6 +10,7 @@ import Home from './routes/Home';
 import Spinner from './components/Spinner';
 import Teams from './components/Teams';
 import Profile from './routes/Profile';
+import { ModalProvider, ModalConsumer } from './components/Modal'
 
 
 

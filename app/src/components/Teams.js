@@ -1,7 +1,7 @@
 import React, {  Component } from 'react';
 import TeamCard from './TeamCard';
 import AddTeamButton from './AddTeamButton';
-
+import { ModalProvider, ModalConsumer } from './Modal';
 
 
 class Teams extends Component {
@@ -15,9 +15,14 @@ class Teams extends Component {
     }
 render() {
     return (
+        <ModalProvider>
         <div>
             <div className="actions-bar">
-                <AddTeamButton onClick={this.props.modalHandler}/>
+            <ModalConsumer>
+            {context => ( 
+                <AddTeamButton onClick={context.toggleModal}/>
+            )}
+            </ModalConsumer>
             </div>
             <ul className="app-content">
                 {this.props.teams.map((team, i) => <li key={i}>
@@ -28,7 +33,7 @@ render() {
                                                 /></li>)}
             </ul>
         </div>
-    
+        </ModalProvider>
     );
 }
 }

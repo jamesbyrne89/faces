@@ -4,53 +4,74 @@ import TakePhoto from './TakePhoto';
 import UploadPhoto from './UploadPhoto';
 
 
-const ModalContext = React.createContext();
+export const ModalContext = React.createContext();
+export const ModalConsumer = ModalContext.Consumer;
+
+export class ModalProvider extends Component {
+    constructor() {
+        super();
+        this.state = {
+            modalIsOpen: false
+        }
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    toggleModal() {
+        this.setState({ isOpen: !this.state.isOpen });
+    }
+
+    render() {
+        return (
+            <ModalContext.Provider
+                value={{
+                    toggleModal: this.toggleModal,
+                    state: this.state
+                }}
+            >
+                {this.props.children}
+            </ModalContext.Provider>
+        )
+    }
+}
 
 
 class Modal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            loading: true,
+            isOpen: false
         }
     }
 
-    
-
-
-    renderContent() {
-        if (this.props.content === 'new_photo') {
-            return <NewPhoto handler={ this.props.handler }
-            />
-        } else if (this.props.content === 'take_photo') {
-            return <TakePhoto handler={ this.props.handler }
-            />
-        } else if (this.props.content === 'upload_photo') {
-            return <UploadPhoto handler={ this.props.handler }
-            />
-        } else {
-            return null
-        }
-    }
 
     render() {
-        if (this.props.modalIsOpen) {
-            return (
-            <div className="modal-wrap">
-                <div className="modal-bg"
-                    onClick={() => this.props.handler(false, null) }>
-                </div>
-                <div className="modal" >
-                    <button className="btn modal-close-btn"
-                            onClick={() => this.props.handler(false, null) } >
-                        <i className="fa fa-times"></i>
-                    </button>
-                    { this.renderContent() }
-                </div>
-            </div>
-            );
-        } else { return null }
+
+        return (
+            <ModalProvider>
+                <ModalConsumer>
+                    {context => (
+                        context ? (
+                        <div className="modal-wrap">
+                            <div className="modal-bg"
+                                onClick={() => this.props.handler(false, null)}>
+                            </div>
+                            <div className="modal" >
+                                <button className="btn modal-close-btn"
+                                    onClick={() => this.props.handler(false, null)} >
+                                    <i className="fa fa-times"></i>
+                                </button>
+                                {this.props.children}
+                            </div>
+                        </div>
+                        )
+                        : null
+                    )}
+                </ModalConsumer>
+            </ModalProvider>
+        );
     }
+
 }
 
-export default Modal ;
+export default Modal;
