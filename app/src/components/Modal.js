@@ -43,6 +43,23 @@ class Modal extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
+  renderModal() {
+    return (
+      <div className="modal-wrap">
+        <div
+          className="modal-bg"
+          // onClick={() => this.props.handler(false, null)}
+        />
+        <div className="modal">
+          <button className="btn modal-close-btn" onClick={this.toggleModal}>
+            <i className="fa fa-times" />X
+          </button>
+          {/* {this.props.children} */}
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <ModalContext.Provider
@@ -51,23 +68,8 @@ class Modal extends Component {
           state: this.state
         }}
       >
-        {this.state.isOpen && (
-          <div className="modal-wrap">
-            <div
-              className="modal-bg"
-              // onClick={() => this.props.handler(false, null)}
-            />
-            <div className="modal">
-              <button
-                className="btn modal-close-btn"
-                //   onClick={() => this.props.handler(false, null)}
-              >
-                <i className="fa fa-times" />
-              </button>
-              {this.props.children}
-            </div>
-          </div>
-        )}
+        {this.state.isOpen && this.renderModal()}
+        {this.props.children}
       </ModalContext.Provider>
     );
   }

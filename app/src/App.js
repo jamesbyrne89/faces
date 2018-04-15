@@ -30,12 +30,14 @@ const ProtectedRoute = ({
       render={props => {
         console.log(...rest);
         return userAuthenticated ? (
-          <Component
-            locations={locations}
-            userAuthenticated={userAuthenticated}
-            {...props}
-            {...rest}
-          />
+          <Modal>
+            <Component
+              locations={locations}
+              userAuthenticated={userAuthenticated}
+              {...props}
+              {...rest}
+            />
+          </Modal>
         ) : (
           <Redirect
             to={{

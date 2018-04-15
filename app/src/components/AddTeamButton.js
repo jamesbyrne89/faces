@@ -5,7 +5,10 @@ const AddTeamButton = props => {
   return (
     <ModalConsumer>
       {context => (
-        <button onClick={context} className="btn intent-add add-team">
+        <button
+          onClick={context.toggleModal}
+          className="btn intent-add add-team"
+        >
           + <span>Create Team</span>
         </button>
       )}

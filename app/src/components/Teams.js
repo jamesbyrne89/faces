@@ -17,7 +17,7 @@ class Teams extends Component {
       <div>
         <div className="actions-bar">
           <ModalConsumer>
-            {context => <AddTeamButton onClick={context} />}
+            {context => <AddTeamButton onClick={context.toggleModal} />}
           </ModalConsumer>
         </div>
         <ul className="app-content">
