@@ -1,0 +1,77 @@
+/* Modal */
+
+.modal-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal {
+    background: white;
+    border-radius: 5px;
+    position: absolute;
+    padding: 2.5rem 2.5rem 1rem 1rem;
+    display: block;
+    z-index: 100;
+    min-width: 600px;
+    min-height: 440px;
+}
+
+.modal-title {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    color: #001386;
+}
+
+.modal-close-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+    margin-top: 0;
+    cursor: pointer;
+    -webkit-transition: 0.15s ease-out;
+    transition: 0.15s ease-out;
+    font-size: 1.5rem;
+    background: none;
+}
+
+.modal-close-btn:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.modal-close-btn:active {
+    border: 0;
+    outline: 0;
+}
+
+.modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #212431;
+    opacity: 0.5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    z-index: 50;
+}

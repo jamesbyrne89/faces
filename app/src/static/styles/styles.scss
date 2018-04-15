@@ -1,13 +1,14 @@
-@import './base/_reset';
-@import './base/_typography';
-@import './components/_login';
-@import './components/_spinner';
-@import './components/_error';
-@import './components/_buttons';
+@import "./base/_reset";
+@import "./base/_typography";
+@import "./components/_login";
+@import "./components/_spinner";
+@import "./components/_error";
+@import "./components/_buttons";
+@import "./components/_modal";
 body {
     background: #ebedf6;
     color: #81859a;
-    font-family: 'Proxima Nova Rg', helvetica, arial, sans-serif;
+    font-family: "Proxima Nova Rg", helvetica, arial, sans-serif;
     border-bottom: solid 6px #001386;
 }
 
@@ -164,7 +165,7 @@ body {
 .app-content ul {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 200px);
     list-style: none;
 }
 
@@ -174,8 +175,8 @@ body {
     -webkit-box-shadow: 1px 10px 10px #efefef;
     box-shadow: 1px 10px 10px #efefef;
     margin: 1.25rem;
-    -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 10px rgba(0, 0, 0, .08);
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 10px rgba(0, 0, 0, .08);
+    -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 10px rgba(0, 0, 0, 0.08);
     line-height: 1.5;
     picture {
         position: relative;
@@ -202,15 +203,14 @@ body {
     border-radius: 10px;
     padding: 1.5rem;
     text-align: left;
-    min-width: 15vw;
     -webkit-transition: all 400ms 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: all 400ms 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .profile-card:hover,
 .team-card:hover {
-    -webkit-box-shadow: 0 25px 30px 0 rgba(36, 50, 66, .08);
-    box-shadow: 0 25px 30px 0 rgba(36, 50, 66, .08);
+    -webkit-box-shadow: 0 25px 30px 0 rgba(36, 50, 66, 0.08);
+    box-shadow: 0 25px 30px 0 rgba(36, 50, 66, 0.08);
 }
 
 .profile-card__name {
@@ -265,82 +265,6 @@ body {
 
 .team-card__size-num p {
     font-size: 1rem;
-}
-
-/* Modal */
-
-.modal-wrap {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.modal {
-    background: white;
-    border-radius: 5px;
-    position: absolute;
-    padding: 2.5rem 2.5rem 1rem 1rem;
-    display: block;
-    z-index: 100;
-}
-
-.modal-title {
-    text-align: left;
-    margin-bottom: 2.5rem;
-    color: #001386;
-}
-
-.modal-close-btn {
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-    margin-top: 0;
-    cursor: pointer;
-    -webkit-transition: 0.15s ease-out;
-    transition: 0.15s ease-out;
-    font-size: 1.5rem;
-    background: none;
-}
-
-.modal-close-btn:hover {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-}
-
-.modal-close-btn:active {
-    border: 0;
-    outline: 0;
-}
-
-.modal-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #212431;
-    opacity: 0.5;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    z-index: 50;
 }
 
 .add-photo {
@@ -428,8 +352,8 @@ canvas {
     margin-top: 1rem;
     border-radius: 10px;
     text-align: left;
-    -webkit-box-shadow: 0 25px 30px 0 rgba(36, 50, 66, .08);
-    box-shadow: 0 25px 30px 0 rgba(36, 50, 66, .08);
+    -webkit-box-shadow: 0 25px 30px 0 rgba(36, 50, 66, 0.08);
+    box-shadow: 0 25px 30px 0 rgba(36, 50, 66, 0.08);
     border-radius: 4px;
     pointer-events: auto;
 }

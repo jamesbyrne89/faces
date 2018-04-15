@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NewPhoto from "./NewPhoto";
 import TakePhoto from "./TakePhoto";
 import UploadPhoto from "./UploadPhoto";
+import { AddTeamForm } from "./AddTeamButton";
 
 export const ModalContext = React.createContext();
 export const ModalConsumer = ModalContext.Consumer;
@@ -34,9 +35,11 @@ class Modal extends Component {
     super(props);
     this.state = {
       loading: true,
-      isOpen: false
+      isOpen: false,
+      content: null
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.showContent = this.showContent.bind(this);
   }
 
   toggleModal() {
@@ -46,18 +49,23 @@ class Modal extends Component {
   renderModal() {
     return (
       <div className="modal-wrap">
-        <div
-          className="modal-bg"
-          // onClick={() => this.props.handler(false, null)}
-        />
+        <div className="modal-bg" onClick={this.toggleModal} />
         <div className="modal">
           <button className="btn modal-close-btn" onClick={this.toggleModal}>
             <i className="fa fa-times" />X
           </button>
-          {/* {this.props.children} */}
+          {this.state.content}
         </div>
       </div>
     );
+  }
+
+  showContent(content) {
+    if (content == "add-team") {
+      this.setState({ content: <AddTeamForm /> });
+    } else {
+      return "Something went wrong.";
+    }
   }
 
   render() {
@@ -65,6 +73,7 @@ class Modal extends Component {
       <ModalContext.Provider
         value={{
           toggleModal: this.toggleModal,
+          showContent: this.showContent,
           state: this.state
         }}
       >
