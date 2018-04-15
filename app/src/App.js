@@ -1,21 +1,21 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch
-} from "react-router-dom";
-import Login from "./routes/Login";
-import SignUp from "./routes/SignUp";
-import NotFound from "./routes/NotFound";
-import Modal from "./components/Modal";
-import Dashboard from "./routes/Dashboard";
-import { auth } from "./models/Data";
-import Home from "./routes/Home";
-import Spinner from "./components/Spinner";
-import Teams from "./components/Teams";
-import Profile from "./routes/Profile";
-import { ModalProvider, ModalConsumer } from "./components/Modal";
+} from 'react-router-dom';
+import Login from './routes/Login';
+import SignUp from './routes/SignUp';
+import NotFound from './routes/NotFound';
+import Modal from './components/Modal';
+import Dashboard from './routes/Dashboard';
+import { auth } from './models/Data';
+import Home from './routes/Home';
+import Spinner from './components/Spinner';
+import Teams from './components/Teams';
+import Profile from './routes/Profile';
+import { ModalProvider, ModalConsumer } from './components/Modal';
 
 const ProtectedRoute = ({
   component: Component,
@@ -23,25 +23,23 @@ const ProtectedRoute = ({
   userAuthenticated,
   ...rest
 }) => {
-  console.log(...rest);
   return (
     <Route
       {...rest}
       render={props => {
-        console.log(...rest);
         return userAuthenticated ? (
-          <Modal>
+          <ModalProvider>
             <Component
               locations={locations}
               userAuthenticated={userAuthenticated}
               {...props}
               {...rest}
             />
-          </Modal>
+          </ModalProvider>
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: '/login',
               state: { from: props.location }
             }}
           />
@@ -73,68 +71,68 @@ class App extends Component {
       modalIsOpen: false,
       teams: [
         {
-          name: "Digital",
+          name: 'Digital',
           profiles: [
             {
-              name: "James Byrne",
-              title: "Junior Web Developer",
-              email: "james.byrne@warehouse.co.uk",
-              team: "Digital",
-              photo: "http://via.placeholder.com/250x250"
+              name: 'James Byrne',
+              title: 'Junior Web Developer',
+              email: 'james.byrne@warehouse.co.uk',
+              team: 'Digital',
+              photo: 'http://via.placeholder.com/250x250'
             },
             {
-              name: "James Byrne",
-              title: "Junior Web Developer",
-              email: "james.byrne@warehouse.co.uk",
-              team: "Digital",
-              photo: "http://via.placeholder.com/250x250"
+              name: 'James Byrne',
+              title: 'Junior Web Developer',
+              email: 'james.byrne@warehouse.co.uk',
+              team: 'Digital',
+              photo: 'http://via.placeholder.com/250x250'
             },
             {
-              name: "Jotis Moore",
-              title: "Lead Developer",
-              email: "jotis.moore@warehouse.co.uk",
-              team: "Digital",
-              photo: "http://via.placeholder.com/250x250"
+              name: 'Jotis Moore',
+              title: 'Lead Developer',
+              email: 'jotis.moore@warehouse.co.uk',
+              team: 'Digital',
+              photo: 'http://via.placeholder.com/250x250'
             },
             {
-              name: "Alix Burn",
-              title: "Head Of Digital",
-              email: "alixansDra.burn@warehouse.co.uk",
-              team: "Digital",
-              photo: "http://via.placeholder.com/250x250"
+              name: 'Alix Burn',
+              title: 'Head Of Digital',
+              email: 'alixansDra.burn@warehouse.co.uk',
+              team: 'Digital',
+              photo: 'http://via.placeholder.com/250x250'
             }
           ]
         },
         {
-          name: "Brand Comms",
+          name: 'Brand Comms',
           profiles: [
             {
-              name: "Jill Gate",
-              title: "Brand Comms Director",
-              email: "jill.gate@warehouse.co.uk",
-              team: "Brand Comms",
-              photo: "http://via.placeholder.com/250x250"
+              name: 'Jill Gate',
+              title: 'Brand Comms Director',
+              email: 'jill.gate@warehouse.co.uk',
+              team: 'Brand Comms',
+              photo: 'http://via.placeholder.com/250x250'
             }
           ]
         },
         {
-          name: "Retail",
+          name: 'Retail',
           profiles: []
         },
         {
-          name: "Buying",
+          name: 'Buying',
           profiles: []
         }
       ],
       locations: {
         list: [
-          "London",
-          "Stanton Harcourt",
-          "International",
-          "International 2",
-          "International 3"
+          'London',
+          'Stanton Harcourt',
+          'International',
+          'International 2',
+          'International 3'
         ],
-        current: "London"
+        current: 'London'
       }
     };
   }

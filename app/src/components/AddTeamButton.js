@@ -1,5 +1,5 @@
-import React from "react";
-import { ModalConsumer } from "./Modal";
+import React from 'react';
+import { ModalConsumer } from './Modal';
 
 export const AddTeamButton = props => {
   return (
@@ -8,7 +8,7 @@ export const AddTeamButton = props => {
         <button
           onClick={() => {
             context.toggleModal();
-            context.showContent("add-team");
+            context.showContent('add-team');
           }}
           className="btn intent-add add-team"
         >

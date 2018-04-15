@@ -1,9 +1,9 @@
-import React from "react";
-import LocationsDropdown from "../components/LocationsDropdown";
-import Header from "../components/Header";
-import Teams from "../components/Teams";
-import SignOutButton from "../components/SignOutButton";
-import { modalHandler } from "../helpers/modal";
+import React from 'react';
+import LocationsDropdown from '../components/LocationsDropdown';
+import Header from '../components/Header';
+import Teams from '../components/Teams';
+import SignOutButton from '../components/SignOutButton';
+import { modalHandler } from '../helpers/modal';
 
 const Dashboard = props => {
   const { teams } = props;

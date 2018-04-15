@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import TeamCard from "./TeamCard";
-import { AddTeamButton } from "./AddTeamButton";
-import { ModalProvider, ModalConsumer } from "./Modal";
+import React, { Component } from 'react';
+import TeamCard from './TeamCard';
+import { AddTeamButton } from './AddTeamButton';
+import { ModalProvider, ModalConsumer } from './Modal';
 
 class Teams extends Component {
   constructor(props) {

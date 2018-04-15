@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import NewPhoto from "./NewPhoto";
-import TakePhoto from "./TakePhoto";
-import UploadPhoto from "./UploadPhoto";
-import { AddTeamForm } from "./AddTeamButton";
+import React, { Component } from 'react';
+import NewPhoto from './NewPhoto';
+import TakePhoto from './TakePhoto';
+import UploadPhoto from './UploadPhoto';
+import { AddTeamForm } from './AddTeamButton';
 
 export const ModalContext = React.createContext();
 export const ModalConsumer = ModalContext.Consumer;
@@ -61,10 +61,10 @@ class Modal extends Component {
   }
 
   showContent(content) {
-    if (content == "add-team") {
+    if (content == 'add-team') {
       this.setState({ content: <AddTeamForm /> });
     } else {
-      return "Something went wrong.";
+      return 'Something went wrong.';
     }
   }
 
