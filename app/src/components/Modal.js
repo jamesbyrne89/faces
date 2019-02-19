@@ -8,27 +8,6 @@ export const ModalContext = React.createContext();
 export const ModalConsumer = ModalContext.Consumer;
 export const ModalProvider = ModalContext.Provider;
 
-// export class ModalProvider extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       modalIsOpen: false
-//     };
-//     this.toggleModal = this.toggleModal.bind(this);
-//   }
-
-//   toggleModal() {
-//     this.setState(prevState => {
-//       modalIsOpen: !prevState.modalIsOpen;
-//     });
-//   }
-
-//   render() {
-//     return (
-
-//     );
-//   }
-// }
 
 class Modal extends Component {
   constructor(props) {
@@ -85,3 +64,18 @@ class Modal extends Component {
 }
 
 export default Modal;
+
+
+
+
+const inModal = Component => {
+  class ModalComponent extends Component {
+    render() {
+      return (
+        <Modal>
+          <Component {...this.props}/>
+        </Modal>
+      )
+    }
+  }
+}

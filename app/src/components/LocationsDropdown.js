@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-LocationsDropdown.PropTypes = {
-  locations: PropTypes.array
-};
+
 class LocationsDropdown extends Component {
   constructor(props) {
     super(props);
@@ -45,5 +43,9 @@ class LocationsDropdown extends Component {
     );
   }
 }
+
+LocationsDropdown.PropTypes = {
+  locations: PropTypes.array
+};
 
 export default LocationsDropdown;
